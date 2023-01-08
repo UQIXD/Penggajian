@@ -15,6 +15,15 @@ class CreateGajisTable extends Migration
     {
         Schema::create('gajis', function (Blueprint $table) {
             $table->id();
+            $table->integer('bulan');
+            $table->integer('tahun');
+            $table->integer('masa_kerja');
+            $table->foreignId('departemen_id');
+            $table->foreignId('jabatan_id');
+            // $table->integer('tj_jabatan');
+            $table->integer('tj_anak');
+            $table->integer('tj_istri');
+            $table->integer('total');
             $table->timestamps();
         });
     }

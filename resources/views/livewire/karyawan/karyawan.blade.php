@@ -43,13 +43,13 @@
                                         <th>Nama Karyawan</th>
                                         <th>Jenis Kelamin</th>
                                         <th>Agama</th>
-                                        {{-- <th>TTL</th> --}}
+                                        <th>TTL</th>
                                         <th>No Telepon</th>
                                         <th>Status</th>
                                         <th>Alamat</th>
                                         <th>Kewarganegaraan</th>
                                         <th>Foto</th>
-                                        {{-- <th>Gaji</th> --}}
+                                        <th>Gaji</th>
                                         <th style="width: 10%">Action</th>
                                     </tr>
                                 </thead>
@@ -59,13 +59,13 @@
                                             <td>{{ $kry->nm_karyawan }}</td>
                                             <td>{{ $kry->jns_kelamin }}</td>
                                             <td>{{ $kry->agama }}</td>
-                                            {{-- <td>{{ $kry->ttl }}</td> --}}
+                                            <td>{{ $kry->ttl }}</td>
                                             <td>{{ $kry->no_telpon }}</td>
                                             <td>{{ $kry->status }}</td>
                                             <td>{{ $kry->alamat }}</td>
                                             <td>{{ $kry->kewarganegaraan }}</td>
                                             <td>{{ $kry->foto }}</td>
-                                            {{-- <td>{{ $kry->gaji }}</td> --}}
+                                            <td>{{ $kry->gj->total }}</td>
                                             <td>
                                                 <div class="form-button-action">
                                                     <button type="button" data-toggle="tooltip" title=""
@@ -87,13 +87,13 @@
                                         <th>Nama Karyawan</th>
                                         <th>Jenis Kelamin</th>
                                         <th>Agama</th>
-                                        {{-- <th>TTL</th> --}}
+                                        <th>TTL</th>
                                         <th>No Telepon</th>
                                         <th>Status</th>
                                         <th>Alamat</th>
                                         <th>Kewarganegaraan</th>
                                         <th>Foto</th>
-                                        {{-- <th>Gaji</th> --}}
+                                        <th>Gaji</th>
                                         <th>Action</th>
                                     </tr>
                                 </tfoot>

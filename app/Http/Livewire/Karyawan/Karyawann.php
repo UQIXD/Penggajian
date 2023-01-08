@@ -19,7 +19,7 @@ class Karyawann extends Component
         $karyawan = karyawan::all();
         return view('livewire.karyawan.karyawan', [
             'karyawan' => $karyawan,
-            'gaji' => $gaji
+            'gj' => $gaji
         ]);
     }
 

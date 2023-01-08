@@ -18,13 +18,13 @@ class CreateKaryawansTable extends Migration
             $table->string('nm_karyawan');
             $table->string('jns_kelamin');
             $table->string('agama');
-            // $table->date('ttl')->default(0);
+            // $table->date('ttl');
             $table->string('no_telpon');
             $table->string('status');
             $table->string('alamat');
             $table->string('kewarganegaraan');
             $table->string('foto');
-            $table->foreignId('id_gaji')->default(0);
+            $table->foreignId('gaji_id');
             $table->timestamps();
         });
     }

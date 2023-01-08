@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class departemen extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['nm_departemen'];
+
+    public function gaji(){
+        return $this->hasMany(gaji::class);
+    }
 }
