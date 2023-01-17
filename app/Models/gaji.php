@@ -9,8 +9,7 @@ class gaji extends Model
 {
     use HasFactory;
 
-    // protected $guarded = ['id'];
-    protected $fillable = ['bulan','tahun','masa_kerja','departemen_id','jabatan_id','tj_anak','tj_istri','total'];
+    protected $guarded = ['id'];
 
     public function karyawan()
     {

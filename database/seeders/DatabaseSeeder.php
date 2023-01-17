@@ -32,6 +32,7 @@ class DatabaseSeeder extends Seeder
             'nm_karyawan' => 'anto',
             'jns_kelamin' => 'Laki-Laki',
             'agama' => 'islam',
+            'ttl' => '2023/01/16',
             'no_telpon' => '085742',
             'status' => 'jomblo',
             'alamat' => 'malang',
@@ -41,23 +42,22 @@ class DatabaseSeeder extends Seeder
         ]);
 
         gaji::create([
-            'bulan' => 1000,
-            'tahun' => 2000,
-            'masa_kerja' => 2,
-            'departemen_id' => 1,
-            'jabatan_id' => 1,
-            'tj_anak' => 90,
-            'tj_istri' => 20,
-            'total' => 5000,
+            'jabatan' => 'Manager Keuangan',
+            'gaji_pokok' => 2000000,
         ]);
 
-        departemen::create([
-            'nm_departemen' => 'hukum',
+        gaji::create([
+            'jabatan' => 'Manager Pemasaran',
+            'gaji_pokok' => 1500000,
         ]);
 
-        jabatan::create([
-            'posisi_jabatan' => 'manager',
-            'tunjangan_jabatan' => '5000',
-        ]);
+        // departemen::create([
+        //     'nm_departemen' => 'hukum',
+        // ]);
+
+        // jabatan::create([
+        //     'posisi_jabatan' => 'manager',
+        //     'tunjangan_jabatan' => '5000',
+        // ]);
     }
 }

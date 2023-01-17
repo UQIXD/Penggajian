@@ -45,7 +45,7 @@
                         {{-- <span class="caret"></span> --}}
                     </a>
                 </li>
-                <li class="nav-item {{ Request::is('admin/karyawan') ? 'active' : '' }}">
+                <li class="nav-item {{ Request::is('admin/karyawan') ? 'active' : '' }} {{ Request::is('admin/gaji') ? 'active' : '' }}">
                     <a data-toggle="collapse" href="#tables">
                         <i class="fas fa-table"></i>
                         <p>Tables</p>
@@ -58,9 +58,9 @@
                                     <span class="sub-item">Karyawan</span>
                                 </a>
                             </li>
-                            <li>
-                                <a href="tables/datatables.html">
-                                    <span class="sub-item">Datatables</span>
+                            <li class="{{ Request::is('admin/gaji') ? 'active' : '' }}">
+                                <a href="{{ route('gaji.gaji') }}">
+                                    <span class="sub-item">Gaji</span>
                                 </a>
                             </li>
                         </ul>

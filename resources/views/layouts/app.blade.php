@@ -36,6 +36,7 @@
 
     <!-- datepicker bootstrap -->
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap-datepicker.min.css') }}">
+    <link href="{{ asset('assets/libs/toastr/build/toastr.min.css') }}" rel="stylesheet" />
 
     @livewireStyles
 
@@ -95,6 +96,10 @@
     <!-- Atlantis JS -->
     <script src="{{ asset('assets/js/atlantis.min.js') }}"></script>
 
+    <script src="{{ asset('assets/libs/toastr/build/toastr.min.js') }}"></script>
+
+    <script src="{{ asset('sweetalert2.all.min.js') }}"></script>
+
     <!-- Atlantis DEMO methods, don't include it in your project! -->
     {{-- <script src="{{ asset('assets/js/setting-demo.js') }}"></script>
     <script src="{{ asset('assets/js/demo.js') }}"></script> --}}
@@ -128,7 +133,30 @@
     </script>
 
     <script>
-        window.addEventListener('tampil-tambah', event => {
+        window.addEventListener('tampil-Kry', event => {
+            $('#modal-tambah').modal('show');
+        });
+        window.addEventListener('tampil-Gaji', event => {
+            $('#modal-tambah').modal('show');
+        });
+        window.addEventListener('pesan-kry', event => {
+            toastr.warning(event.detail.message, "Peringatan!");
+        });
+        window.addEventListener('pesan-gaji', event => {
+            toastr.warning(event.detail.message, "Peringatan!");
+        });
+        window.addEventListener('hide-tambah-kry', event => {
+            $('#modal-tambah').modal('hide');
+            toastr.success(event.detail.message, "Sukses!");
+        });
+        window.addEventListener('hide-tambah-gaji', event => {
+            $('#modal-tambah').modal('hide');
+            toastr.success(event.detail.message, "Sukses!");
+        });
+        window.addEventListener('tampil-rubah-gaji', event => {
+            $('#modal-tambah').modal('show');
+        });
+        window.addEventListener('tampil-rubah-kry', event => {
             $('#modal-tambah').modal('show');
         });
     </script>

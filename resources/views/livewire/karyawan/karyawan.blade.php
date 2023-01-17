@@ -2,7 +2,8 @@
     <div class="content">
         <div class="page-inner">
             <div class="page-header">
-                <h4 class="page-title">DataTables.Net</h4>
+                <h4 class="page-title">Data Karyawan
+                </h4>
                 <ul class="breadcrumbs">
                     <li class="nav-home">
                         <a href="#">
@@ -19,7 +20,7 @@
                         <i class="flaticon-right-arrow"></i>
                     </li>
                     <li class="nav-item">
-                        <a href="#">Datatables</a>
+                        <a href="#">Data Karyawan</a>
                     </li>
                 </ul>
             </div>
@@ -70,7 +71,8 @@
                                                 <div class="form-button-action">
                                                     <button type="button" data-toggle="tooltip" title=""
                                                         class="btn btn-link btn-primary btn-lg"
-                                                        data-original-title="Edit Task" wire:click.prevent="tampilRubah({{ $kry->id }})">
+                                                        data-original-title="Edit Task"
+                                                        wire:click.prevent="tampilRubah({{ $kry->id }})">
                                                         <i class="fa fa-edit"></i>
                                                     </button>
                                                     <button type="button" data-toggle="tooltip" title=""
@@ -126,24 +128,24 @@
                     {{-- <p class="small">Create a new row using this form, make sure you
                         fill them all
                     </p> --}}
-                    <form>
+                    <form wire:submit.prevent="{{ $showEdit ? 'updateKry' : 'createKry' }}">
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="form-group form-group-default">
                                     <label>Nama Karyawan</label>
-                                    <input id="namakry" type="text" class="form-control"
-                                        placeholder="Masukkan Nama" wire:model.defer="data.namaKry">
+                                    <input id="nm_karyawan" type="text" class="form-control" name="nm_karyawan"
+                                        placeholder="Masukkan Nama" wire:model.defer="data.nm_karyawan">
                                 </div>
                             </div>
                             <div class="col-sm-12">
                                 <div class="form-group form-group-default">
                                     <label>Jenis Kelamin</label>
                                     <div class="form-control">
-                                        <input type="radio" name="JenisKelamin" id="Laki-Laki" value="Laki-Laki"
-                                            wire:model.defer="data.jnskel">
+                                        <input type="radio" name="jns_kelamin" id="jns_kelamin" value="Laki-Laki"
+                                            wire:model.defer="data.jns_kelamin">
                                         Laki-Laki
-                                        <input style="margin-left: 15px" type="radio" name="JenisKelamin"
-                                            id="Perempuan" value="Perempuan" wire:model.defer="data.jnskel">
+                                        <input style="margin-left: 15px" type="radio" name="jns_kelamin"
+                                            id="jns_kelamin" value="Perempuan" wire:model.defer="data.jns_kelamin">
                                         Perempuan
                                     </div>
 
@@ -152,8 +154,9 @@
                             <div class="col-sm-12">
                                 <div class="form-group form-group-default">
                                     <label>Agama</label>
-                                    <select name="agama" id="agama" wire:model.defer="data.agama" style="background-color: #202940; color: white">
-                                        <option value="">- Pilih Agama -</option>
+                                    <select name="agama" id="agama" wire:model.defer="data.agama"
+                                        style="background-color: #202940; color: white">
+                                        <option value=""> - Pilih Agama - </option>
                                         <option value="Islam">Islam</option>
                                         <option value="Kristen">Kristen</option>
                                         <option value="Katolik">Katolik</option>
@@ -166,26 +169,26 @@
                             <div class="col-sm-12">
                                 <div class="form-group form-group-default">
                                     <label>Tempat Tanggal Lahir</label>
-                                    <input type="text" class="form-control" id="ttl"
-                                        id="ttl" name="ttl" wire:model.defer="data.ttl">
+                                    <input type="date" class="form-control" id="ttl" id="ttl" value="{{ date('Y-m-d') }}"
+                                        name="ttl" wire:model.defer="data.ttl">
                                 </div>
                             </div>
                             <div class="col-sm-12">
                                 <div class="form-group form-group-default">
                                     <label>Nomer Telepon</label>
-                                    <input id="notlp" type="text" class="form-control"
-                                        placeholder="Masukkan Nomer Telepon" wire:model.defer="data.telp">
+                                    <input id="no_telpon" name="no_telpon" type="text" class="form-control"
+                                        placeholder="Masukkan Nomer Telepon" wire:model.defer="data.no_telpon">
                                 </div>
                             </div>
                             <div class="col-sm-12">
                                 <div class="form-group form-group-default">
                                     <label>Status</label>
                                     <div class="form-control">
-                                        <input type="radio" name="status" id="Menikah" value="Menikah"
+                                        <input type="radio" name="status" id="status" value="Menikah"
                                             wire:model.defer="data.status">
                                         Menikah
                                         <input style="margin-left: 15px" type="radio" name="status"
-                                            id="Belum Menikah" value="Belum Menikah" wire:model.defer="data.status">
+                                            id="status" value="Belum Menikah" wire:model.defer="data.status">
                                         Belum Menikah
                                     </div>
                                 </div>
@@ -193,30 +196,38 @@
                             <div class="col-sm-12">
                                 <div class="form-group form-group-default">
                                     <label>Alamat</label>
-                                    <input id="alamat" type="text" class="form-control"
+                                    <input id="alamat" type="text" name="alamat" class="form-control"
                                         placeholder="Masukkan Alamat" wire:model.defer="data.alamat">
                                 </div>
                             </div>
                             <div class="col-sm-12">
                                 <div class="form-group form-group-default">
                                     <label>Kewarganegaraan</label>
-                                    <input id="kwn" type="text" class="form-control"
-                                        placeholder="Masukkan Kewarganegaraan" wire:model.defer="data.namakwn">
+                                    <input id="kewarganegaraan" name="kewarganegaraan" type="text"
+                                        class="form-control" placeholder="Masukkan Kewarganegaraan"
+                                        wire:model.defer="data.kewarganegaraan">
                                 </div>
                             </div>
                             <div class="col-sm-12">
                                 <div class="form-group form-group-default">
                                     <label>Gaji</label>
-                                    <input id="gaji" type="text" class="form-control"
-                                        placeholder="Masukkan Gaji" wire:model.defer="data.gaji">
+                                    <select name="gaji_id" id="gaji_id" wire:model.defer="data.gaji_id"
+                                        style="background-color: #202940; color: white">
+                                        <option value="0"> - Pilih Gaji - </option>
+                                        @foreach ($gaji as $gj)
+                                            <option value="{{ $gj->id }}">{{ $gj->jabatan }} |
+                                                {{ $gj->gaji_pokok }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                         </div>
+                        <div class="modal-footer no-bd">
+                            <button type="submit" id="submit" name="tambah" value="tambah"
+                                class="btn btn-primary">Add</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        </div>
                     </form>
-                </div>
-                <div class="modal-footer no-bd">
-                    <button type="button" id="addRowButton" class="btn btn-primary">Add</button>
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
@@ -296,14 +307,14 @@
     <script src="{{ asset('assets/js/bootstrap-datepicker.min.js') }}"></script>
     <script src="{{ asset('assets/locales/bootstrap-datepicker.id.min.js') }}"></script>
 
-    <script>
+    {{-- <script>
         $(function() {
             $("#ttl").datepicker({
                 autoclose: true,
                 todayHighlight: true,
-                format: 'yyyy-mm-dd',
+                format: 'dd-mm-yyyy',
                 language: 'id'
             });
         });
-    </script>
+    </script> --}}
 @endpush
