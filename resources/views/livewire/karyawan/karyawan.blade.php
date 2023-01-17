@@ -29,7 +29,7 @@
                     <div class="card-header">
                         <div class="d-flex align-items-center">
                             <h4 class="card-title">Add Row</h4>
-                            <button class="btn btn-primary btn-round ml-auto" wire:click.prevent="tambahBrg">
+                            <button class="btn btn-primary btn-round ml-auto" wire:click.prevent="tambahKry">
                                 <i class="fa fa-plus"></i>
                                 Add Row
                             </button>
@@ -65,12 +65,12 @@
                                             <td>{{ $kry->alamat }}</td>
                                             <td>{{ $kry->kewarganegaraan }}</td>
                                             <td>{{ $kry->foto }}</td>
-                                            <td>{{ $kry->gj->total }}</td>
+                                            <td>{{ $kry->gaji->total }}</td>
                                             <td>
                                                 <div class="form-button-action">
                                                     <button type="button" data-toggle="tooltip" title=""
                                                         class="btn btn-link btn-primary btn-lg"
-                                                        data-original-title="Edit Task">
+                                                        data-original-title="Edit Task" wire:click.prevent="tampilRubah({{ $kry->id }})">
                                                         <i class="fa fa-edit"></i>
                                                     </button>
                                                     <button type="button" data-toggle="tooltip" title=""
@@ -112,11 +112,11 @@
             <div class="modal-content" style="background-color: #202940;">
                 <div class="modal-header no-bd">
                     <h5 class="modal-title">
-                        <span class="fw-mediumbold">
-                            New</span>
-                        <span class="fw-light">
-                            Row
-                        </span>
+                        @if ($showEdit)
+                            Rubah Karyawan
+                        @else
+                            Tambah Karyawan
+                        @endif
                     </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
@@ -152,14 +152,21 @@
                             <div class="col-sm-12">
                                 <div class="form-group form-group-default">
                                     <label>Agama</label>
-                                    <input id="agm" type="text" class="form-control"
-                                        placeholder="Masukkan Agama" wire:model.defer="data.agama">
+                                    <select name="agama" id="agama" wire:model.defer="data.agama" style="background-color: #202940; color: white">
+                                        <option value="">- Pilih Agama -</option>
+                                        <option value="Islam">Islam</option>
+                                        <option value="Kristen">Kristen</option>
+                                        <option value="Katolik">Katolik</option>
+                                        <option value="Konghucu">Konghucu</option>
+                                        <option value="Hindu">Hindu</option>
+                                        <option value="Budha">Budha</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="col-sm-12">
                                 <div class="form-group form-group-default">
                                     <label>Tempat Tanggal Lahir</label>
-                                    <input type="text" class="form-control" id="ttl" wire:model.defer="ttl"
+                                    <input type="text" class="form-control" id="ttl"
                                         id="ttl" name="ttl" wire:model.defer="data.ttl">
                                 </div>
                             </div>

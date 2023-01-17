@@ -48,7 +48,7 @@ class DatabaseSeeder extends Seeder
             'jabatan_id' => 1,
             'tj_anak' => 90,
             'tj_istri' => 20,
-            'total' => 50000,
+            'total' => 5000,
         ]);
 
         departemen::create([
