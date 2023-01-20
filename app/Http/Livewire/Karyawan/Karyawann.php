@@ -34,7 +34,7 @@ class Karyawann extends Component
         $validasi =  Validator::make($this->data, [
             'nm_karyawan' => 'required',
             'jns_kelamin' => 'required',
-            'agama' => 'required',   
+            'agama' => 'required',
             'ttl' =>   'required',
             'no_telpon' => 'required',
             'status' => 'required',
@@ -82,20 +82,20 @@ class Karyawann extends Component
     }
 
 
-    // public function tampilHapus($barang_id){
-    //     $this->barang_id = $barang_id;
-    //     $this->dispatchBrowserEvent('tampil-hapus');
-    // }
+    public function tampilHapus($kry_id){
+        $this->kry_id = $kry_id;
+        $this->dispatchBrowserEvent('tampil-hapus-kry');
+    }
 
-    // public function hapusBrg(){
-    //     try {
-    //         $barang = barang::findOrfail($this->barang_id);
-    //         $barang->delete();
-    //         $this->dispatchBrowserEvent('hide-hapus',['message' => 'Barang Berhasil dihapus']);
-    //         return Redirect()->back();
-    //     } catch (\Throwable $th) {
-    //         $this->dispatchBrowserEvent('hide-hapus',['message' => 'Barang Gagal dihapus']);
-    //     }
-    // }
+    public function hapusKry(){
+        try {
+            $karyawan = karyawan::findOrfail($this->kry_id);
+            $karyawan->delete();
+            $this->dispatchBrowserEvent('hide-hapus-kry',['message' => 'Data Karyawan Berhasil dihapus']);
+            return Redirect()->back();
+        } catch (\Throwable $th) {
+            $this->dispatchBrowserEvent('hide-hapus-kry',['message' => 'Data karyawan Gagal dihapus']);
+        }
+    }
 
 }

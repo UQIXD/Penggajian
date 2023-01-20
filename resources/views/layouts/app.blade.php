@@ -159,6 +159,13 @@
         window.addEventListener('tampil-rubah-kry', event => {
             $('#modal-tambah').modal('show');
         });
+        window.addEventListener('tampil-hapus-kry', event => {
+            $('#modal-hapus').modal('show');
+        });
+        window.addEventListener('hide-hapus-kry', event => {
+            $('#modal-hapus').modal('hide');
+            toastr.error(event.detail.message, "Sukses!");
+        });
     </script>
 
     @stack('jsku')

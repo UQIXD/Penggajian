@@ -76,7 +76,7 @@
                                                         <i class="fa fa-edit"></i>
                                                     </button>
                                                     <button type="button" data-toggle="tooltip" title=""
-                                                        class="btn btn-link btn-danger" data-original-title="Remove">
+                                                        class="btn btn-link btn-danger" data-original-title="Remove" wire:click.prevent="tampilHapus({{ $kry->id }})">
                                                         <i class="fa fa-times"></i>
                                                     </button>
                                                 </div>
@@ -229,6 +229,33 @@
                         </div>
                     </form>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    {{-- modal hapus --}}
+
+    <div class="modal fade" id="modal-hapus" wire:ignore.self>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Hapus Karyawan</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form autocomplete="off" wire:submit.prevent="hapusKry">
+                    <div class="modal-body">
+                        <div class="card-body">
+                            <p>Apakah Data dihapus...?</p>
+                        </div>
+                    </div>
+                    <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
+                        <button type="submit" id="submit" class="btn btn-primary" name="tambah"
+                            value="tambah">Hapus</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

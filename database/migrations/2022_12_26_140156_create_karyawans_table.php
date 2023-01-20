@@ -23,7 +23,7 @@ class CreateKaryawansTable extends Migration
             $table->string('status');
             $table->string('alamat');
             $table->string('kewarganegaraan');
-            $table->string('foto');
+            $table->string('foto')->default(0);
             $table->foreignId('gaji_id');
             $table->timestamps();
         });
