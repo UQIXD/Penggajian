@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBpjsTable extends Migration
+class CreateIuranPensiunsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,10 @@ class CreateBpjsTable extends Migration
      */
     public function up()
     {
-        Schema::create('bpjs', function (Blueprint $table) {
+        Schema::create('iuran_pensiuns', function (Blueprint $table) {
             $table->id();
+            $table->string('jabatan');
+            $table->bigInteger('potongan');
             $table->timestamps();
         });
     }
@@ -26,6 +28,6 @@ class CreateBpjsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bpjs');
+        Schema::dropIfExists('iuran_pensiuns');
     }
 }

@@ -48,11 +48,11 @@ class Karyawann extends Component
         return redirect()->back();
     }
 
-    public function tampilRubah(karyawan $karyawan){
+    public function Rubah_kry(karyawan $karyawan){
         $this->showEdit = true;
         $this->data = $karyawan->toArray();
         $this->kry_id = $karyawan->id;
-        $this->dispatchBrowserEvent('tampil-tambah');
+        $this->dispatchBrowserEvent('tampil-rubah-kry');
     }
 
     public function updateKry(){
@@ -70,19 +70,19 @@ class Karyawann extends Component
             'gaji_id' => 'required',
         ])->validate();
 
-        $karyawan = karyawan::findOrfail($this->karyawan_id);
+        $karyawan = karyawan::findOrfail($this->kry_id);
         if($karyawan){
             $karyawan->update($validasi);
-            $this->dispatchBrowserEvent('hide-tambah',['message' => 'Data Karyawan Berhasil dirubah']);
+            $this->dispatchBrowserEvent('hide-tambah-kry',['message' => 'Data Karyawan Berhasil dirubah']);
         }else{
-            $this->dispatchBrowserEvent('pesan', ['message' => 'Data Karyawan Gagal dirubah']);
+            $this->dispatchBrowserEvent('pesan-kry', ['message' => 'Data Karyawan Gagal dirubah']);
         }
 
         return redirect()->back();
     }
 
 
-    public function tampilHapus($kry_id){
+    public function Hapus_kry($kry_id){
         $this->kry_id = $kry_id;
         $this->dispatchBrowserEvent('tampil-hapus-kry');
     }

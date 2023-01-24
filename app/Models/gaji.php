@@ -17,15 +17,15 @@ class gaji extends Model
 
     }
 
-    public function departemen()
-    {
-        return $this->belongsTo(departemen::class);
+    // public function departemen()
+    // {
+    //     return $this->belongsTo(departemen::class);
 
-    }
+    // }
 
-    public function jabatan()
-    {
-        return $this->belongsTo(jabatan::class);
+    // public function jabatan()
+    // {
+    //     return $this->belongsTo(jabatan::class);
 
-    }
+    // }
 }

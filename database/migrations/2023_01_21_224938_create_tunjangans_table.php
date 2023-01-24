@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePotLainsTable extends Migration
+class CreateTunjangansTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,10 @@ class CreatePotLainsTable extends Migration
      */
     public function up()
     {
-        Schema::create('pot_lains', function (Blueprint $table) {
+        Schema::create('tunjangans', function (Blueprint $table) {
             $table->id();
+            $table->string('jabatan');
+            $table->bigInteger('tunjangan');
             $table->timestamps();
         });
     }
@@ -26,6 +28,6 @@ class CreatePotLainsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pot_lains');
+        Schema::dropIfExists('tunjangans');
     }
 }

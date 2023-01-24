@@ -36,7 +36,7 @@
 
     <!-- datepicker bootstrap -->
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap-datepicker.min.css') }}">
-    <link href="{{ asset('assets/libs/toastr/build/toastr.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/toastr/build/toastr.min.css') }}" rel="stylesheet" />
 
     @livewireStyles
 
@@ -53,7 +53,9 @@
         @include('layouts.sidebar')
 
         <div class="main-panel">
-            {{ $slot }}
+            <div class="content">
+                {{ $slot }}
+            </div>
             @include('layouts.footer')
         </div>
 
@@ -96,7 +98,7 @@
     <!-- Atlantis JS -->
     <script src="{{ asset('assets/js/atlantis.min.js') }}"></script>
 
-    <script src="{{ asset('assets/libs/toastr/build/toastr.min.js') }}"></script>
+    <script src="{{ asset('assets/toastr/build/toastr.min.js') }}"></script>
 
     <script src="{{ asset('sweetalert2.all.min.js') }}"></script>
 
@@ -139,6 +141,9 @@
         window.addEventListener('tampil-Gaji', event => {
             $('#modal-tambah').modal('show');
         });
+        window.addEventListener('tampil-Det', event => {
+            $('#modal-tambah').modal('show');
+        });
         window.addEventListener('pesan-kry', event => {
             toastr.warning(event.detail.message, "Peringatan!");
         });
@@ -153,6 +158,10 @@
             $('#modal-tambah').modal('hide');
             toastr.success(event.detail.message, "Sukses!");
         });
+        window.addEventListener('hide-tambah-det', event => {
+            $('#modal-tambah').modal('hide');
+            toastr.success(event.detail.message, "Sukses!");
+        });
         window.addEventListener('tampil-rubah-gaji', event => {
             $('#modal-tambah').modal('show');
         });
@@ -162,7 +171,14 @@
         window.addEventListener('tampil-hapus-kry', event => {
             $('#modal-hapus').modal('show');
         });
+        window.addEventListener('tampil-hapus-gaji', event => {
+            $('#modal-hapus').modal('show');
+        });
         window.addEventListener('hide-hapus-kry', event => {
+            $('#modal-hapus').modal('hide');
+            toastr.error(event.detail.message, "Sukses!");
+        });
+        window.addEventListener('hide-hapus-gaji', event => {
             $('#modal-hapus').modal('hide');
             toastr.error(event.detail.message, "Sukses!");
         });

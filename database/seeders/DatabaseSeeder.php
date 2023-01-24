@@ -2,12 +2,17 @@
 
 namespace Database\Seeders;
 
+use App\Models\ass_kec;
+use App\Models\ass_kem;
+use App\Models\bpjs;
 use App\Models\karyawan;
 use App\Models\User;
 use App\Models\gaji;
-use App\Models\departemen;
-use App\Models\jabatan;
-
+use App\Models\detail;
+use App\Models\iuran_organisasi;
+use App\Models\iuran_pensiun;
+use App\Models\pph;
+use App\Models\tunjangan;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -51,13 +56,93 @@ class DatabaseSeeder extends Seeder
             'gaji_pokok' => 1500000,
         ]);
 
-        // departemen::create([
-        //     'nm_departemen' => 'hukum',
-        // ]);
+        detail::create([
+            'karyawan_id' => 1,
+            'absensi_id' => 1,
+            'lembur' => 120000,
+            'tunjangan_id' => 1,
+            'pph_id' => 1,
+            'bpjs_id' => 1,
+            'ass_kec_id' => 1,
+            'ass_kem_id' => 1,
+            'iuran_pensiun_id' => 1,
+            'iuran_organisasi_id' => 1,
+            'denda' => 500000,
+            'lain-lain' => 500000,
+            'tot_pot' => 500000,
+            'subtot' => 500000,
+            'gtot' => 500000,
+        ]);
 
-        // jabatan::create([
-        //     'posisi_jabatan' => 'manager',
-        //     'tunjangan_jabatan' => '5000',
-        // ]);
+        bpjs::create([
+            'jabatan' => 'Manager',
+            'potongan' => 2,
+        ]);
+
+        bpjs::create([
+            'jabatan' => 'Staff',
+            'potongan' => 1,
+        ]);
+
+        tunjangan::create([
+            'jabatan' => 'Manager',
+            'tunjangan' => 500000,
+        ]);
+
+        tunjangan::create([
+            'jabatan' => 'Staff',
+            'tunjangan' => 300000,
+        ]);
+
+        pph::create([
+            'jabatan' => 'Manager',
+            'potongan' => 2,
+        ]);
+
+        pph::create([
+            'jabatan' => 'Staff',
+            'potongan' => 1,
+        ]);
+
+        ass_kec::create([
+            'jabatan' => 'Manager',
+            'potongan' => 2,
+        ]);
+
+        ass_kec::create([
+            'jabatan' => 'Staff',
+            'potongan' => 1,
+        ]);
+
+        ass_kem::create([
+            'jabatan' => 'Manager',
+            'potongan' => 2,
+        ]);
+
+        ass_kem::create([
+            'jabatan' => 'Staff',
+            'potongan' => 1,
+        ]);
+
+        iuran_pensiun::create([
+            'jabatan' => 'Manager',
+            'potongan' => 2,
+        ]);
+
+        iuran_pensiun::create([
+            'jabatan' => 'Staff',
+            'potongan' => 1,
+        ]);
+
+        iuran_organisasi::create([
+            'jabatan' => 'Manager',
+            'potongan' => 2,
+        ]);
+
+        iuran_organisasi::create([
+            'jabatan' => 'Staff',
+            'potongan' => 1,
+        ]);
+
     }
 }

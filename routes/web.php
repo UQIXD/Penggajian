@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Login\Login;
 use App\Http\Controllers\DashboardController;
+use App\Http\Livewire\Detail\Detail;
 use App\Http\Livewire\Gaji\Gaji;
 use App\Http\Livewire\Karyawan\Karyawann;
 
@@ -28,6 +29,8 @@ use App\Http\Livewire\Karyawan\Karyawann;
 Route::get('/dashboard', DashboardController::class)->name('dashboard.dash');
 Route::get('admin/karyawan', Karyawann::class)->name('karyawan.karyawan');
 Route::get('admin/gaji', Gaji::class)->name('gaji.gaji');
+Route::get('admin/detail', Detail::class)->name('detail.detail');
+Route::get('admin/detail/tambah', [Detail::class, "tambahdetail"])->name('detail_tambah');
 // Route::get('admin/barang', BarangList::class)->name('admin.barang');
 
 // Route::get('admin/menu', Menu::class)->name('admin.menu');

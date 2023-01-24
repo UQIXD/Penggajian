@@ -9,7 +9,7 @@ class jabatan extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['posisi_jabatan','tunjangan_jabatan'];
+    protected $guarded = ['id'];
 
     public function gaji(){
         return $this->hasMany(gaji::class);

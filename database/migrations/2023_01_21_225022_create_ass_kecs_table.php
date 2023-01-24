@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePphsTable extends Migration
+class CreateAssKecsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,10 @@ class CreatePphsTable extends Migration
      */
     public function up()
     {
-        Schema::create('pphs', function (Blueprint $table) {
+        Schema::create('ass_kecs', function (Blueprint $table) {
             $table->id();
+            $table->string('jabatan');
+            $table->bigInteger('potongan');
             $table->timestamps();
         });
     }
@@ -26,6 +28,6 @@ class CreatePphsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pphs');
+        Schema::dropIfExists('ass_kecs');
     }
 }

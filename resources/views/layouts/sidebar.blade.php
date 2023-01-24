@@ -4,7 +4,7 @@
         <div class="sidebar-content">
             <div class="user">
                 <div class="avatar-sm float-left mr-2">
-                    <img src="../assets/img/profile.jpg" alt="..." class="avatar-img rounded-circle">
+                    <img src="{{ asset('assets/img/profile.jpg') }}" alt="..." class="avatar-img rounded-circle">
                 </div>
                 <div class="info">
                     <a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
@@ -61,6 +61,11 @@
                             <li class="{{ Request::is('admin/gaji') ? 'active' : '' }}">
                                 <a href="{{ route('gaji.gaji') }}">
                                     <span class="sub-item">Gaji</span>
+                                </a>
+                            </li>
+                            <li class="{{ Request::is('admin/detail') ? 'active' : '' }}">
+                                <a href="{{ route('detail.detail') }}">
+                                    <span class="sub-item">Detail</span>
                                 </a>
                             </li>
                         </ul>

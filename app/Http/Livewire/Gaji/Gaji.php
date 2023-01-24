@@ -38,7 +38,7 @@ class Gaji extends Component
         return redirect()->back();
     }
 
-    public function tampilRubah(ModelsGaji $gaji){
+    public function Rubah_gaji(ModelsGaji $gaji){
         $this->showEdit = true;
         $this->data = $gaji->toArray();
         $this->gaji_id = $gaji->id;
@@ -59,5 +59,21 @@ class Gaji extends Component
         }
 
         return redirect()->back();
+    }
+
+    public function Hapus_gaji($gaji_id){
+        $this->gaji_id = $gaji_id;
+        $this->dispatchBrowserEvent('tampil-hapus-gaji');
+    }
+
+    public function hapusGaji(){
+        try {
+            $gaji = ModelsGaji::findOrfail($this->gaji_id);
+            $gaji->delete();
+            $this->dispatchBrowserEvent('hide-hapus-gaji',['message' => 'Data Gaji Berhasil dihapus']);
+            return Redirect()->back();
+        } catch (\Throwable $th) {
+            $this->dispatchBrowserEvent('hide-hapus-gaji',['message' => 'Data Gaji Gagal dihapus']);
+        }
     }
 }

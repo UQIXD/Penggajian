@@ -1,85 +1,84 @@
 <div>
-    <div class="content">
-        <div class="page-inner">
-            <div class="page-header">
-                <h4 class="page-title">Data Karyawan
-                </h4>
-                <ul class="breadcrumbs">
-                    <li class="nav-home">
-                        <a href="#">
-                            <i class="flaticon-home"></i>
-                        </a>
-                    </li>
-                    <li class="separator">
-                        <i class="flaticon-right-arrow"></i>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#">Tables</a>
-                    </li>
-                    <li class="separator">
-                        <i class="flaticon-right-arrow"></i>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#">Data Karyawan</a>
-                    </li>
-                </ul>
-            </div>
+    <div class="page-inner">
+        <div class="page-header">
+            <h4 class="page-title">Data Gaji
+            </h4>
+            <ul class="breadcrumbs">
+                <li class="nav-home">
+                    <a href="#">
+                        <i class="flaticon-home"></i>
+                    </a>
+                </li>
+                <li class="separator">
+                    <i class="flaticon-right-arrow"></i>
+                </li>
+                <li class="nav-item">
+                    <a href="#">Tables</a>
+                </li>
+                <li class="separator">
+                    <i class="flaticon-right-arrow"></i>
+                </li>
+                <li class="nav-item">
+                    <a href="#">Data Gaji</a>
+                </li>
+            </ul>
+        </div>
 
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">
-                        <div class="d-flex align-items-center">
-                            <h4 class="card-title">Add Row</h4>
-                            <button class="btn btn-primary btn-round ml-auto" wire:click.prevent="tambahGaji">
-                                <i class="fa fa-plus"></i>
-                                Add Row
-                            </button>
-                        </div>
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="d-flex align-items-center">
+                        <h4 class="card-title">Data Gaji</h4>
+                        <button class="btn btn-primary btn-round ml-auto" wire:click.prevent="tambahGaji">
+                            <i class="fa fa-plus"></i>
+                            Tambah Data
+                        </button>
                     </div>
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table id="add-row" class="display table table-striped table-hover">
-                                <thead>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="add-row" class="display table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th>NO</th>
+                                    <th>Jabatan</th>
+                                    <th>Gaji Pokok</th>
+                                    <th style="width: 10%">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($gaji as $gj)
                                     <tr>
-                                        <th>NO</th>
-                                        <th>Jabatan</th>
-                                        <th>Gaji Pokok</th>
-                                        <th style="width: 10%">Action</th>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $gj->jabatan }}</td>
+                                        <td>{{ $gj->gaji_pokok }}</td>
+                                        <td>
+                                            <div class="form-button-action">
+                                                <button type="button" data-toggle="tooltip" title=""
+                                                    class="btn btn-link btn-primary btn-lg"
+                                                    data-original-title="Edit Task"
+                                                    wire:click.prevent="Rubah_gaji({{ $gj->id }})">
+                                                    <i class="fa fa-edit"></i>
+                                                </button>
+                                                <button type="button" data-toggle="tooltip" title=""
+                                                    class="btn btn-link btn-danger" data-original-title="Remove"
+                                                    wire:click.prevent="Hapus_gaji({{ $gj->id }})">
+                                                    <i class="fa fa-times"></i>
+                                                </button>
+                                            </div>
+                                        </td>
                                     </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($gaji as $gj)
-                                        <tr>
-                                            <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $gj->jabatan }}</td>
-                                            <td>{{ $gj->gaji_pokok }}</td>
-                                            <td>
-                                                <div class="form-button-action">
-                                                    <button type="button" data-toggle="tooltip" title=""
-                                                        class="btn btn-link btn-primary btn-lg"
-                                                        data-original-title="Edit Task"
-                                                        wire:click.prevent="tampilRubah({{ $gj->id }})">
-                                                        <i class="fa fa-edit"></i>
-                                                    </button>
-                                                    <button type="button" data-toggle="tooltip" title=""
-                                                        class="btn btn-link btn-danger" data-original-title="Remove">
-                                                        <i class="fa fa-times"></i>
-                                                    </button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <th>NO</th>
-                                        <th>Jabatan</th>
-                                        <th>Gaji Pokok</th>
-                                        <th style="width: 10%">Action</th>
-                                    </tr>
-                                </tfoot>
-                            </table>
-                        </div>
+                                @endforeach
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>NO</th>
+                                    <th>Jabatan</th>
+                                    <th>Gaji Pokok</th>
+                                    <th style="width: 10%">Action</th>
+                                </tr>
+                            </tfoot>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -101,7 +100,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form autocomplete="off" wire:submit.prevent="{{ $showEdit ? 'updateGaji' :  'createGaji' }}">
+                <form autocomplete="off" wire:submit.prevent="{{ $showEdit ? 'updateGaji' : 'createGaji' }}">
                     <div class="modal-body">
                         <div class="card-body">
                             <div class="form-group">
@@ -117,9 +116,8 @@
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Gaji Pokok</label>
-                                <input type="text" class="form-control"
-                                    wire:model.defer="data.gaji_pokok" id="gaji_pokok" name="gaji_pokok"
-                                    placeholder="Masukkan Gaji Pokok" required>
+                                <input type="text" class="form-control" wire:model.defer="data.gaji_pokok"
+                                    id="gaji_pokok" name="gaji_pokok" placeholder="Masukkan Gaji Pokok" required>
                             </div>
                         </div>
                     </div>
@@ -134,6 +132,34 @@
         </div>
         <!-- /.modal-dialog -->
     </div>
+
+    {{-- modal hapus --}}
+
+    <div class="modal fade" id="modal-hapus" wire:ignore.self>
+        <div class="modal-dialog">
+            <div class="modal-content" style="background-color: #202940;color: white">
+                <div class="modal-header">
+                    <h4 class="modal-title">Hapus Data Gaji</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form autocomplete="off" wire:submit.prevent="hapusGaji">
+                    <div class="modal-body">
+                        <div class="card-body">
+                            <p>Apakah Data dihapus...?</p>
+                        </div>
+                    </div>
+                    <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
+                        <button type="submit" id="submit" class="btn btn-primary" name="tambah"
+                            value="tambah">Hapus</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 @push('jsku')
