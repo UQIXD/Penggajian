@@ -20,7 +20,6 @@ use Livewire\Component;
 class Detail extends Component
 {
     public $data = [];
-    public $showEdit = false;
     public $det_id;
 
     public function render()
@@ -77,13 +76,6 @@ class Detail extends Component
             'pph' => $pph,
             'tunjangan' => $tunjangan,
         ]);
-    }
-
-    public function tambahDet()
-    {
-        $this->showEdit = false;
-        $this->reset();
-        $this->dispatchBrowserEvent('tampil-Det');
     }
 
     public function createDet(){

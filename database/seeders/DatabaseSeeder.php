@@ -46,6 +46,19 @@ class DatabaseSeeder extends Seeder
             'gaji_id' => 1,
         ]);
 
+        karyawan::create([
+            'nm_karyawan' => 'vian',
+            'jns_kelamin' => 'Laki-Laki',
+            'agama' => 'islam',
+            'ttl' => '2023/01/16',
+            'no_telpon' => '08574209',
+            'status' => 'jomblo',
+            'alamat' => 'malang',
+            'kewarganegaraan' => 'Indonesia',
+            'foto' => 'foto1.png',
+            'gaji_id' => 2,
+        ]);
+
         gaji::create([
             'jabatan' => 'Manager Keuangan',
             'gaji_pokok' => 2000000,
@@ -56,23 +69,23 @@ class DatabaseSeeder extends Seeder
             'gaji_pokok' => 1500000,
         ]);
 
-        detail::create([
-            'karyawan_id' => 1,
-            'absensi_id' => 1,
-            'lembur' => 120000,
-            'tunjangan_id' => 1,
-            'pph_id' => 1,
-            'bpjs_id' => 1,
-            'ass_kec_id' => 1,
-            'ass_kem_id' => 1,
-            'iuran_pensiun_id' => 1,
-            'iuran_organisasi_id' => 1,
-            'denda' => 500000,
-            'lain-lain' => 500000,
-            'tot_pot' => 500000,
-            'subtot' => 500000,
-            'gtot' => 500000,
-        ]);
+        // detail::create([
+        //     'karyawan_id' => 1,
+        //     'absensi_id' => 1,
+        //     'lembur' => 120000,
+        //     'tunjangan_id' => 1,
+        //     'pph_id' => 1,
+        //     'bpjs_id' => 1,
+        //     'ass_kec_id' => 1,
+        //     'ass_kem_id' => 1,
+        //     'iuran_pensiun_id' => 1,
+        //     'iuran_organisasi_id' => 1,
+        //     'denda' => 500000,
+        //     'lain-lain' => 500000,
+        //     'tot_pot' => 500000,
+        //     'subtot' => 500000,
+        //     'gtot' => 500000,
+        // ]);
 
         bpjs::create([
             'jabatan' => 'Manager',

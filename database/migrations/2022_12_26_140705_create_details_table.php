@@ -17,7 +17,7 @@ class CreateDetailsTable extends Migration
             $table->id();
             $table->foreignId('karyawan_id');
             $table->foreignId('absensi_id');
-            $table->foreignId('lembur');
+            $table->foreignId('lembur_id');
             $table->foreignId('tunjangan_id');
             $table->foreignId('pph_id');
             $table->foreignId('bpjs_id');
