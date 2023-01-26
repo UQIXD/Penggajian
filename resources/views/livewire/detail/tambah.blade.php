@@ -32,19 +32,29 @@
                 </div>
                 <br>
                 <div class="row">
-                    <div class="col-6">
-                        <label for="" style="font-size: 50px">Gaji Pokok</label>
+                    <div class="col-6" style="color: white">
+                        <p>Gaji Pokok</p>
                         <br>
-                        <label for="">Gaji Lembur</label>
+                        <p>Gaji Lembur</p>
                     </div>
                     <div class="col-6">
                         <div class="mb-4">
                             <input id="gaji_pokok" type="text" class="form-control" name="gaji_pokok"
-                        placeholder="Masukkan Nama" wire:model.defer="data.gaji_pokok">
+                                placeholder="Masukkan Nama" wire:model.defer="data.gaji_pokok">
                         </div>
-
-                        <input id="gaji_lembur" type="text" class="form-control" name="gaji_lembur"
-                        placeholder="Masukkan Nama" wire:model.defer="data.gaji_lembur">
+                        <div class="mb-4">
+                            <input id="gaji_lembur" type="text" class="form-control" name="gaji_lembur"
+                                placeholder="Masukkan Nama" wire:model.defer="data.gaji_lembur">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="mb-3">
+                            <p>Tunjangan</p>
+                            <input id="gaji_pokok" type="text" class="form-control" name="gaji_pokok"
+                                placeholder="Masukkan Nama" wire:model.defer="data.gaji_pokok">
+                        </div>
                     </div>
                 </div>
             </form>
