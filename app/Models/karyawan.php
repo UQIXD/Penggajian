@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\gaji;
 use App\Models\detail;
+use App\Models\absensi;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -21,6 +22,10 @@ class karyawan extends Model
     public function gaji()
     {
         return $this->belongsTo(gaji::class);
+    }
 
+    public function absensi()
+    {
+        return $this->hasMany(absensi::class);
     }
 }

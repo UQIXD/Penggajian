@@ -45,7 +45,7 @@
                         {{-- <span class="caret"></span> --}}
                     </a>
                 </li>
-                <li class="nav-item {{ Request::is('admin/karyawan') ? 'active' : '' }} {{ Request::is('admin/gaji') ? 'active' : '' }}">
+                <li class="nav-item {{ Request::is('admin/karyawan') ? 'active' : '' }} {{ Request::is('admin/gaji') ? 'active' : '' }} {{ Request::is('admin/detail') ? 'active' : '' }} {{ Request::is('admin/absensi') ? 'active' : '' }}">
                     <a data-toggle="collapse" href="#tables">
                         <i class="fas fa-table"></i>
                         <p>Tables</p>
@@ -61,6 +61,11 @@
                             <li class="{{ Request::is('admin/gaji') ? 'active' : '' }}">
                                 <a href="{{ route('gaji.gaji') }}">
                                     <span class="sub-item">Gaji</span>
+                                </a>
+                            </li>
+                            <li class="{{ Request::is('admin/absensi') ? 'active' : '' }}">
+                                <a href="{{ route('absensi.absensi') }}">
+                                    <span class="sub-item">Absensi</span>
                                 </a>
                             </li>
                             <li class="{{ Request::is('admin/detail') ? 'active' : '' }}">

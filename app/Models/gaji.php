@@ -16,16 +16,4 @@ class gaji extends Model
         return $this->hasMany(karyawan::class);
 
     }
-
-    // public function departemen()
-    // {
-    //     return $this->belongsTo(departemen::class);
-
-    // }
-
-    // public function jabatan()
-    // {
-    //     return $this->belongsTo(jabatan::class);
-
-    // }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Karyawan;
 
+use App\Models\absensi;
 use App\Models\gaji;
 use App\Models\karyawan;
 use Illuminate\Support\Facades\Validator;
@@ -17,9 +18,11 @@ class Karyawann extends Component
     {
         $gaji = gaji::all();
         $karyawan = karyawan::all();
+        $absensi = absensi::all();
         return view('livewire.karyawan.karyawan', [
             'karyawan' => $karyawan,
-            'gaji' => $gaji
+            'gaji' => $gaji,
+            'absensi' => $absensi,
         ]);
     }
 

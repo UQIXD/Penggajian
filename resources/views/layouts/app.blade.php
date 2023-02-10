@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Penggajian</title>
     <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
-    <link rel="icon" href="assets/img/icon.ico" type="image/x-icon" />
+    <link rel="icon" href="{{ asset('assets/img/icon.ico') }}" type="image/x-icon" />
 
     <!-- Fonts and icons -->
     <script src="{{ asset('assets/js/plugin/webfont/webfont.min.js') }}"></script>
@@ -29,20 +29,20 @@
     <!-- CSS Files -->
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/atlantis.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/select2/select2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/select2-bootstrap-theme/select2-bootstrap.min.css') }}">
     <!-- framework bootstrap -->
-    {{-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script> --}}
 
     <!-- datepicker bootstrap -->
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap-datepicker.min.css') }}">
     <link href="{{ asset('assets/toastr/build/toastr.min.css') }}" rel="stylesheet" />
 
+
     @livewireStyles
 
 </head>
 
-<body data-background-color="dark">
+<body data-background-color="dark" style="color: white">
     <div class="wrapper">
         <div class="main-header">
 
@@ -72,7 +72,6 @@
     <!-- jQuery Scrollbar -->
     <script src="{{ asset('assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js') }}"></script>
 
-
     <!-- Chart JS -->
     <script src="{{ asset('assets/js/plugin/chart.js/chart.min.js') }}"></script>
 
@@ -101,6 +100,10 @@
     <script src="{{ asset('assets/toastr/build/toastr.min.js') }}"></script>
 
     <script src="{{ asset('sweetalert2.all.min.js') }}"></script>
+
+    <script src="{{ asset('assets/select2/select2.min.js') }}"></script>
+
+    <script src="{{ asset('assets/select2.js') }}"></script>
 
     <!-- Atlantis DEMO methods, don't include it in your project! -->
     {{-- <script src="{{ asset('assets/js/setting-demo.js') }}"></script>
@@ -138,19 +141,26 @@
         window.addEventListener('tampil-Kry', event => {
             $('#modal-tambah').modal('show');
         });
+        window.addEventListener('tampil-Abs', event => {
+            $('#modal-tambah').modal('show');
+        });
         window.addEventListener('tampil-Gaji', event => {
             $('#modal-tambah').modal('show');
         });
-        window.addEventListener('tampil-Det', event => {
-            $('#modal-tambah').modal('show');
-        });
         window.addEventListener('pesan-kry', event => {
+            toastr.warning(event.detail.message, "Peringatan!");
+        });
+        window.addEventListener('pesan-abs', event => {
             toastr.warning(event.detail.message, "Peringatan!");
         });
         window.addEventListener('pesan-gaji', event => {
             toastr.warning(event.detail.message, "Peringatan!");
         });
         window.addEventListener('hide-tambah-kry', event => {
+            $('#modal-tambah').modal('hide');
+            toastr.success(event.detail.message, "Sukses!");
+        });
+        window.addEventListener('hide-tambah-abs', event => {
             $('#modal-tambah').modal('hide');
             toastr.success(event.detail.message, "Sukses!");
         });
@@ -165,16 +175,26 @@
         window.addEventListener('tampil-rubah-gaji', event => {
             $('#modal-tambah').modal('show');
         });
+        window.addEventListener('tampil-rubah-abs', event => {
+            $('#modal-tambah').modal('show');
+        });
         window.addEventListener('tampil-rubah-kry', event => {
             $('#modal-tambah').modal('show');
         });
         window.addEventListener('tampil-hapus-kry', event => {
             $('#modal-hapus').modal('show');
         });
+        window.addEventListener('tampil-hapus-abs', event => {
+            $('#modal-hapus').modal('show');
+        });
         window.addEventListener('tampil-hapus-gaji', event => {
             $('#modal-hapus').modal('show');
         });
         window.addEventListener('hide-hapus-kry', event => {
+            $('#modal-hapus').modal('hide');
+            toastr.error(event.detail.message, "Sukses!");
+        });
+        window.addEventListener('hide-hapus-abs', event => {
             $('#modal-hapus').modal('hide');
             toastr.error(event.detail.message, "Sukses!");
         });
