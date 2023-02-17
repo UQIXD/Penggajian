@@ -37,7 +37,8 @@ class Absensi extends Component
         $this->dispatchBrowserEvent('tampil-Abs');
     }
 
-    public function createAbs(){
+    public function createAbs()
+    {
         $validasi =  Validator::make($this->data, [
             'karyawan_id' => 'required',
             'bulan' => 'required',
@@ -51,6 +52,15 @@ class Absensi extends Component
             // 'gajiLembur' => 'required',
         ])->validate();
         ModelsAbsensi::create($validasi);
+
+        // $absensi = ModelsAbsensi::findOrfail($this->abs_id);
+        // if($absensi){
+        //     $absensi->update($validasi);
+        //     $this->dispatchBrowserEvent('hide-tambah-abs',['message' => 'Data Absensi Berhasil dirubah']);
+        // }else{
+        //     $this->dispatchBrowserEvent('pesan-abs', ['message' => 'Data Absensi Gagal dirubah']);
+        // }
+
         $this->dispatchBrowserEvent('hide-tambah-abs',['message' => 'Data Absensi Berhasil disimpan']);
         return redirect()->back();
     }

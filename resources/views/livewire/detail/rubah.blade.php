@@ -4,8 +4,8 @@
             <span style="font-size: 50px;color: white">Slip Gaji</span>
         </div>
         <div class="col-12">
-            <form action="{{ route('save_detail') }}" wire:submit.prevent="createDet" autocomplete="off" method="POST"
-                style="color: white">
+            <form action="{{ route('save_rubah', $detail->id) }}" wire:submit.prevent="createDet" autocomplete="off" method="POST" style="color: white">
+                @method('put')
                 @csrf
                 <div class="row">
                     <div class="col-4">
@@ -20,8 +20,7 @@
                             {{-- <datalist id="id_kry"> --}}
                             {{-- @forelse ($karyawan as $kry) --}}
                             @foreach ($absensi as $kry)
-                                <option value="{{ $kry->karyawan_id }}"
-                                    {{ old('karyawan_id') == $kry->karyawan_id ? 'selected' : '' }}
+                                <option value="{{ $kry->karyawan_id }}" {{ old('karyawan_id') == $kry->karyawan_id ? 'selected' : '' }}
                                     style="text-align: center;background-color: #1a2035">
                                     {{ $kry->karyawan->nm_karyawan }}
                                 </option>
@@ -40,9 +39,7 @@
                 <div class="row">
                     <div class="col-4">
                         <label for="nm_karyawan">Nama :</label>
-                        {{-- <span id="nm_karyawan" style="display: inline"></span> --}}
-                        <input type="text" class="form-control" id="nm_karyawan"
-                            style="display: inline;width: 185px;">
+                        <span id="nm_karyawan" style="display: inline"></span>
                     </div>
                     <div class="col-4">
                     </div>
@@ -52,9 +49,9 @@
                 <br>
                 <div class="row">
                     <div class="col-4">
-                        <label for="">Jabatan :</label>
+                        <label for="">Jabatan</label>
                         <input type="text" id="jabatan" name="jabatan" wire:model.defer="data.jabatan"
-                            class="form-control" value="{{ old('jabatan') }}" style="display: inline;width: 173px;">
+                            class="form-control" value="{{ old('jabatan') }}">
                         {{-- <span id="jabatan" wire:model.defer="data.jabatan"></span> --}}
                     </div>
                     <div class="col-4">
@@ -91,7 +88,7 @@
                         <p style="display: inline">Gaji Lembur
                         <p style="margin-inline-start: 10px;display: inline;">
                             (
-                        <p id="lembur" style="display: inline"></p> X <p style="display: inline" id="gaji_lembur"></p> )</p>
+                        <p id="lembur" style="display: inline"></p> X 25.000 )</p>
                         </p>
                         {{-- @endif --}}
                     </div>
@@ -134,8 +131,6 @@
                         {{-- <span id="subTotal" wire:model.defer="data.subtot"></span> --}}
                         <input type="text" id="totwal" class="form-control">
                         ____________________________________________________________
-                        <br>
-                        <br>
                         {{-- <div id="subTotal" wire:model.defer="data.subtot"></div> --}}
                         <input type="text" id="subTotal" wire:model.defer="data.subtot" value="{{ old('subtot') }}"
                             name="subtot" class="form-control" required>
@@ -155,10 +150,7 @@
                 <br>
                 <div class="row">
                     <div class="col-4">
-                        <p style="display: inline">PPh Ps 21
-                        <p style="display: inline; margin-left: 5px">(
-                        <p style="display: inline" id="potpph"></p>%)</p>
-                        </p>
+                        <p>PPh Ps 21</p>
                     </div>
                     <div class="col-4">
                         {{-- <span id="pph" wire:model.defer="data.pph" class="tot_pot"></span> --}}
@@ -170,10 +162,7 @@
                 </div>
                 <div class="row">
                     <div class="col-4">
-                        <p style="display: inline">Presmi Ass. Kec
-                        <p style="display: inline; margin-left: 5px">(
-                        <p style="display: inline" id="potasskec"></p>%)</p>
-                        </p>
+                        <p>Presmi Ass. Kec</p>
                     </div>
                     <div class="col-4">
                         {{-- <span id="ass_kec" wire:model.defer="data.ass_kec" class="tot_pot"></span> --}}
@@ -185,10 +174,7 @@
                 </div>
                 <div class="row">
                     <div class="col-4">
-                        <p style="display: inline">Presmi Ass. Kem
-                        <p style="display: inline; margin-left: 5px">(
-                        <p style="display: inline" id="potasskem"></p>%)</p>
-                        </p>
+                        <p>Presmi Ass. Kem</p>
                     </div>
                     <div class="col-4">
                         {{-- <span id="ass_kem" wire:model.defer="data.ass_kem" class="tot_pot"></span> --}}
@@ -200,10 +186,7 @@
                 </div>
                 <div class="row">
                     <div class="col-4">
-                        <p style="display: inline">Iuran THT
-                        <p style="display: inline; margin-left: 5px">(
-                        <p style="display: inline" id="pottht"></p>%)</p>
-                        </p>
+                        <p>Iuran THT</p>
                     </div>
                     <div class="col-4">
                         {{-- <span id="iuran_tht" wire:model.defer="data.iuran_tht" class="tot_pot"></span> --}}
@@ -215,10 +198,7 @@
                 </div>
                 <div class="row">
                     <div class="col-4">
-                        <p style="display: inline">Iuran Pensiun
-                        <p style="display: inline; margin-left: 5px">(
-                        <p style="display: inline" id="potpen"></p>%)</p>
-                        </p>
+                        <p>Iuran Pensiun</p>
                     </div>
                     <div class="col-4">
                         {{-- <span id="iuran_pensiun" wire:model.defer="data.iuran_pensiun" class="tot_pot"></span> --}}
@@ -231,10 +211,7 @@
                 </div>
                 <div class="row">
                     <div class="col-4">
-                        <p style="display: inline">Iuran Organisasi
-                        <p style="display: inline; margin-left: 5px">(
-                        <p style="display: inline" id="potorgan"></p>%)</p>
-                        </p>
+                        <p>Iuran Organisasi</p>
                     </div>
                     <div class="col-4">
                         {{-- <span id="iuran_organisasi" wire:model.defer="data.iuran_organisasi" class="tot_pot"></span> --}}
@@ -259,7 +236,7 @@
                 </div>
                 <div class="row">
                     <div class="col-4">
-                        <p style="display: inline;">- Terlambat = <p style="display: inline" id="terlambatt"></p>/hari
+                        <p style="display: inline;">- Terlambat = 10.000/hari
                         <p style="margin-inline-start: 5px;display: inline;">
                             (
                         <p id="terlambat" style="display: inline"></p> )</p>
@@ -275,7 +252,7 @@
                 </div>
                 <div class="row">
                     <div class="col-4">
-                        <p style="display: inline;">- Izin > 3 = <p style="display: inline" id="izinn"></p>/hari
+                        <p style="display: inline;">- Izin > 3 = 70.000/hari
                         <p style="margin-inline-start: 23px;display: inline;">
                             (
                         <p id="izin" style="display: inline"></p> )</p>
@@ -292,7 +269,7 @@
                 </div>
                 <div class="row">
                     <div class="col-4">
-                        <p style="display: inline;">- Cuti > 15 = <p style="display: inline" id="cutii"></p>/hari
+                        <p style="display: inline;">- Cuti > 15 = 70.000/hari
                         <p style="margin-inline-start: 10px;display: inline;">
                             (
                         <p id="cuti" style="display: inline"></p> )</p>
@@ -308,7 +285,7 @@
                 </div>
                 <div class="row">
                     <div class="col-4">
-                        <p style="display: inline;">- Alpha = <p style="display: inline;" id="alphaa"></p>/hari
+                        <p style="display: inline;">- Alpha = 70.000/hari
                         <p style="margin-inline-start: 30px;display: inline;">
                             (
                         <p id="alpha" style="display: inline"></p> )</p>
@@ -438,22 +415,293 @@
                         $.get('http://127.0.0.1:8000/cari_karyawan/' + this.value, function(response) {
                             if (response) {
                                 console.log(response.karyawan);
-                                // console.log(response.gaji);
+                                console.log(response.gaji);
                                 console.log(response.absensi);
-                                // console.log(response.potongan);
                                 $('#karyawan_id').val(response.absensi[0]['karyawan_id']);
                                 $('#absen').val(response.absensi[0]['absensi_id']);
-                                // $('#gaji_pokok').val(response.gaji[0]['gaji_pokok']);
-                                // $('#gaji_lembur').val(response.gaji[0]['gaji_lembur']);
-                                // $('#potongan').val(response.karyawan[0]['potongan_id']);
                                 // $('#karyawan_id').val(response.karyawan[0]['id']);
-                                $('#nm_karyawan').val(response.karyawan[0]['nm_karyawan']);
+                                $('#nm_karyawan').text(response.karyawan[0]['nm_karyawan']);
+                                $('#jabatan').val(response.gaji[0]['jabatan']);
+                                $('#gaji_pokok').val(response.gaji[0]['gaji_pokok']);
                                 $('#terlambat').text(response.absensi[0]['terlambat']);
                                 $('#lembur').text(response.absensi[0]['lembur']);
                                 $('#sakit').text(response.absensi[0]['sakit']);
                                 $('#izin').text(response.absensi[0]['izin']);
                                 $('#cuti').text(response.absensi[0]['cuti']);
                                 $('#alpha').text(response.absensi[0]['alpha']);
+                                // $('#lain').text(response.absensi[0]['lain']);
+
+                                // $("#gaji_pokok").keyup(function() {
+                                let number1 = $("#gaji_pokok").val();
+                                let number2 = $("#lembur").text();
+                                let bur = $("#lemb").val();
+                                let number3 = $("#tun").val();
+
+                                // var number1 = parseInt($("#gaji_pokok").text());
+                                // var bur = parseInt($("#lemb").text());
+                                // var number3 = parseInt($("#tun").text());
+
+                                // var input1 = parseInt($("#input1").val());
+                                // var input2 = parseInt($("#input2").val());
+
+                                let ter = $("#terlambat").text();
+                                let cut = $("#cuti").text();
+                                let izi = $("#izin").text();
+                                let alp = $("#alpha").text();
+                                let limit = 15;
+                                let limitijin = 3;
+
+                                // $('.subtot').each(function() {
+                                //     total += parseFloat($(this).text());
+                                // });
+
+                                // $('#subTotal').text(total);
+
+                                // let result = parseFloat(number1) + parseFloat(bur) + parseFloat(
+                                //     number3);
+                                // // let sub = result;
+                                // // $("#subTotal").html(addCommas(result));
+
+                                // $("#subTotal").html(result);
+
+                                // if (number1 > 0) {
+                                //     let result = parseFloat(number1) + parseFloat(bur) + parseFloat(
+                                //         number3);
+                                //     // let sub = result;
+                                //     // $("#subTotal").html(addCommas(result));
+
+                                //     $("#subTotal").html(result);
+                                // } else {
+                                //     let result = parseFloat(number1) + parseFloat(bur) + parseFloat(
+                                //         number3);
+                                //     // let sub = result;
+                                //     // $("#subTotal").html(addCommas(result));
+                                //     $("#subTotal").html(result);
+                                // }
+                                if (number1 > 3000000) {
+                                    let lemb = number2 * 50000;
+                                    // $("#lemb").html(addCommas(lemb));
+                                    $("#lemb").val(lemb);
+                                } else {
+                                    let lemb = number2 * 25000;
+                                    // $("#lemb").html(addCommas(lemb));
+                                    $("#lemb").val(lemb);
+                                }
+
+                                if (number1 > 3000000) {
+                                    let number3 = 500000;
+                                    // $("#tun").html(addCommas(number3));
+                                    $("#tun").val(number3);
+                                } else {
+                                    let number3 = 250000;
+                                    // $("#tun").html(addCommas(number3));
+                                    $("#tun").val(number3);
+                                }
+
+                                if (number1 > 3000000) {
+                                    let pph = (parseFloat(number1) * 5) / 100;
+                                    // $("#pph").html(addCommas(pph));
+                                    $("#pph").val(pph);
+                                } else {
+                                    let pph = (parseFloat(number1) * 2) / 100;
+                                    // $("#pph").html(addCommas(pph));
+                                    $("#pph").val(pph);
+                                }
+
+                                if (number1 > 3000000) {
+                                    let ass_kec = (parseFloat(number1) * 3) / 100;
+                                    // $("#ass_kec").html(addCommas(ass_kec));
+                                    $("#ass_kec").val(ass_kec);
+                                } else {
+                                    let ass_kec = (parseFloat(number1) * 1) / 100;
+                                    // $("#ass_kec").html(addCommas(ass_kec));
+                                    $("#ass_kec").val(ass_kec);
+                                }
+
+                                if (number1 > 3000000) {
+                                    let ass_kem = (parseFloat(number1) * 3) / 100;
+                                    // $("#ass_kem").html(addCommas(ass_kem));
+                                    $("#ass_kem").val(ass_kem);
+                                } else {
+                                    let ass_kem = (parseFloat(number1) * 1) / 100;
+                                    // $("#ass_kem").html(addCommas(ass_kem));
+                                    $("#ass_kem").val(ass_kem);
+                                }
+
+                                if (number1 > 3000000) {
+                                    let iuran_tht = (parseFloat(number1) * 5) / 100;
+                                    // $("#iuran_tht").html(addCommas(iuran_tht));
+                                    $("#iuran_tht").val(iuran_tht);
+                                } else {
+                                    let iuran_tht = (parseFloat(number1) * 2) / 100;
+                                    // $("#iuran_tht").html(addCommas(iuran_tht));
+                                    $("#iuran_tht").val(iuran_tht);
+                                }
+
+                                if (number1 > 3000000) {
+                                    let iuran_pensiun = (parseFloat(number1) * 5) / 100;
+                                    // $("#iuran_pensiun").html(addCommas(iuran_pensiun));
+                                    $("#iuran_pensiun").val(iuran_pensiun);
+                                } else {
+                                    let iuran_pensiun = (parseFloat(number1) * 2) / 100;
+                                    // $("#iuran_pensiun").html(addCommas(iuran_pensiun));
+                                    $("#iuran_pensiun").val(iuran_pensiun);
+                                }
+
+                                if (number1 > 3000000) {
+                                    let iuran_organisasi = (parseFloat(number1) * 5) / 100;
+                                    // $("#iuran_organisasi").html(addCommas(iuran_organisasi));
+                                    $("#iuran_organisasi").val(iuran_organisasi);
+                                } else {
+                                    let iuran_organisasi = (parseFloat(number1) * 2) / 100;
+                                    // $("#iuran_organisasi").html(addCommas(iuran_organisasi));
+                                    $("#iuran_organisasi").val(iuran_organisasi);
+                                }
+
+                                if (ter > 0) {
+                                    // let denda = parseFloat(number1) * 10000;
+                                    let tlm = ter * 10000;
+                                    // let total = denda;
+                                    // $("#tmb").html(addCommas(tlm));
+                                    $("#tmb").val(tlm);
+                                    // $("#denda").val(number1 * 10000);
+                                } else {
+                                    let tlm = 0;
+                                    // $("#tmb").html(addCommas(tlm));
+                                    $("#tmb").val(tlm);
+                                }
+
+                                if (izi > limitijin) {
+                                    let per2 = izi - limitijin;
+                                    let izin = per2 * 70000;
+                                    // $("#izn").html(addCommas(izin));
+                                    $("#izn").val(izin);
+                                } else {
+                                    let izin = 0;
+                                    // $("#izn").html(addCommas(izin));
+                                    $("#izn").val(izin);
+                                }
+
+                                if (cut > limit) {
+                                    let per1 = cut - limit;
+                                    let cuti = per1 * 70000;
+                                    $("#cut").val(cuti);
+                                    //     // $("#denda").val(cuti + denda);
+                                } else {
+                                    let cuti = 0;
+                                    // $("#cut").html(addCommas(cuti));
+                                    $("#cut").val(cuti);
+                                }
+
+                                if (alp > 0) {
+                                    let alpha = alp * 70000;
+                                    $("#alp").val(alpha);
+                                } else {
+                                    let alpha = alp * 70000;
+                                    $("#alp").val(alpha);
+                                }
+
+                                var gajpok = document.getElementById('gaji_pokok').value;
+                                var lembur = document.getElementById('lemb').value;
+                                var tunjangan = document.getElementById('tun').value;
+
+                                var totwal = parseInt(lembur) + parseInt(tunjangan);
+                                $("#totwal").val(totwal);
+                                var subtot = parseInt(gajpok) + parseInt(lembur) + parseInt(tunjangan);
+                                $("#subTotal").val(subtot);
+
+                                // $("#lain").keyup(function() {
+                                // let number1 = $("#gaji_pokok").val();
+                                // let number2 = $("#lembur").text();
+                                // let bur = $("#lemb").val();
+                                // let number3 = $("#tun").val();
+                                var terlambat = $("#tmb").val();
+                                var izinn = $("#izn").val();
+                                var cuti = $("#cut").val();
+                                var lai = $("#lain").val();
+                                var pot_pph = $("#pph").val();
+                                var pot_ass_kec = $("#ass_kec").val();
+                                var pot_ass_kem = $("#ass_kem").val();
+                                var pot_tht = $("#iuran_tht").val();
+                                var pot_pensi = $("#iuran_pensiun").val();
+                                var pot_organ = $("#iuran_organisasi").val();
+
+                                // var terlambat = document.getElementById('tmb').value;
+                                // var izinn = document.getElementById('izn').value;
+                                // var cuti = document.getElementById('cut').value;
+                                // var lai = document.getElementById('lain').value;
+                                // var pot_pph = document.getElementById('pph').value;
+                                // var pot_ass_kec = document.getElementById('ass_kec').value;
+                                // var pot_ass_kem = document.getElementById('ass_kem').value;
+                                // var pot_tht = document.getElementById('iuran_tht').value;
+                                // var pot_pensi = document.getElementById('iuran_pensiun').value;
+                                // var pot_organ = document.getElementById('iuran_organisasi').value;
+
+                                // var totpot = parseInt(pot_pph) + parseInt(pot_ass_kec) + parseInt(
+                                //         pot_ass_kem) + parseInt(pot_tht) + parseInt(pot_pensi) +
+                                //     parseInt(pot_organ) + parseInt(terlambat) + parseInt(cuti) +
+                                //     parseInt(izinn) + parseInt(lai);
+                                var totpot = parseInt(pot_pph) + parseInt(pot_ass_kec) + parseInt(
+                                        pot_ass_kem) + parseInt(pot_tht) + parseInt(pot_pensi) +
+                                    parseInt(pot_organ) + parseInt(terlambat) + parseInt(cuti) +
+                                    parseInt(izinn);
+                                // $("#tot_pot").html(addCommas(totpot));
+                                $("#tot_pot").val(totpot);
+                                $("#pot").val(totpot);
+
+                                var sub = $("#subTotal").val();
+                                var subpot = $("#pot").val();
+                                var gtot = sub - subpot;
+                                $("#gtot").val(gtot);
+
+                                $("#lain").keyup(function() {
+                                    var terlambat = $("#tmb").val();
+                                    var izinn = $("#izn").val();
+                                    var cuti = $("#cut").val();
+                                    var lai = $("#lain").val();
+                                    var pot_pph = $("#pph").val();
+                                    var pot_ass_kec = $("#ass_kec").val();
+                                    var pot_ass_kem = $("#ass_kem").val();
+                                    var pot_tht = $("#iuran_tht").val();
+                                    var pot_pensi = $("#iuran_pensiun").val();
+                                    var pot_organ = $("#iuran_organisasi").val();
+                                    if (lai > 0) {
+                                        var totpot = parseInt(pot_pph) + parseInt(pot_ass_kec) +
+                                            parseInt(
+                                                pot_ass_kem) + parseInt(pot_tht) + parseInt(
+                                                pot_pensi) +
+                                            parseInt(pot_organ) + parseInt(terlambat) +
+                                            parseInt(
+                                                cuti) +
+                                            parseInt(izinn) + parseInt(lai);
+                                        // var totpot = pot_pph + pot_ass_kec + pot_ass_kem + pot_tht + pot_pensi + pot_organ + terlambat + cuti + izinn + lai;
+                                        $("#tot_pot").val(totpot);
+                                        $("#pot").val(totpot);
+
+                                        var sub = $("#subTotal").val();
+                                        var subpot = $("#pot").val();
+                                        var gtot = sub - subpot;
+                                        $("#gtot").val(gtot);
+                                    } else {
+                                        let lai = 0;
+                                        var totpot = parseInt(pot_pph) + parseInt(pot_ass_kec) +
+                                            parseInt(
+                                                pot_ass_kem) + parseInt(pot_tht) + parseInt(
+                                                pot_pensi) +
+                                            parseInt(pot_organ) + parseInt(terlambat) +
+                                            parseInt(
+                                                cuti) +
+                                            parseInt(izinn) + parseInt(lai);
+                                        // var totpot = pot_pph + pot_ass_kec + pot_ass_kem + pot_tht + pot_pensi + pot_organ + terlambat + cuti + izinn + lai;
+                                        $("#tot_pot").val(totpot);
+                                        $("#pot").val(totpot);
+
+                                        var sub = $("#subTotal").val();
+                                        var subpot = $("#pot").val();
+                                        var gtot = sub - subpot;
+                                        $("#gtot").val(gtot);
+                                    }
+                                });
                                 // var gajpok = document.getElementById('gaji_pokok').value;
                                 // var lembur = document.getElementById('lemb').value;
                                 // var tunjangan = document.getElementById('tun').value;
@@ -603,396 +851,6 @@
                             } else {
                                 console.log('error');
                             }
-                        });
-                    }
-                    // if (this.value) {
-                    // }
-                });
-                $('#karyawan_id').on('change', function() {
-                    if (this.value) {
-                        $.get('http://127.0.0.1:8000/cari_potongan/' + this.value, function(
-                            response) {
-                            if (response) {
-                                // console.log(response.karyawan);
-                                console.log(response.gaji);
-                                // console.log(response.absensi);
-                                console.log(response.potongan);
-                                // $('#karyawan_id').val(response.absensi[0]['karyawan_id']);
-                                // $('#absen').val(response.absensi[0]['absensi_id']);
-                                // $('#karyawan_id').val(response.karyawan[0]['id']);
-                                // $('#nm_karyawan').val(response.karyawan[0]['nm_karyawan']);
-                                $('#jabatan').val(response.gaji[0]['jabatan']);
-                                $('#gaji_pokok').val(response.gaji[0]['gaji_pokok']);
-                                $('#gaji_lembur').text(response.gaji[0]['gaji_lembur']);
-                                // $('#pph').val(response.potongan[0]['pot_pph']);
-
-
-                                $('#potpph').text(response.potongan[0]['pot_pph']);
-                                $('#potasskec').text(response.potongan[0]['pot_ass_kec']);
-                                $('#potasskem').text(response.potongan[0]['pot_ass_kem']);
-                                $('#pottht').text(response.potongan[0]['pot_iuran_tht']);
-                                $('#potpen').text(response.potongan[0]['pot_iuran_pensiun']);
-                                $('#potorgan').text(response.potongan[0][
-                                    'pot_iuran_organisasi'
-                                ]);
-                                $('#terlambatt').text(response.potongan[0]['denda_terlambat']);
-                                $('#izinn').text(response.potongan[0]['denda_izin']);
-                                $('#cutii').text(response.potongan[0]['denda_cuti']);
-                                $('#alphaa').text(response.potongan[0]['denda_alpha']);
-                                // $('#lain').text(response.absensi[0]['lain']);
-
-                                // $("#gaji_pokok").keyup(function() {
-                                let number1 = $("#gaji_pokok").val();
-                                let number2 = $("#lembur").text();
-                                let bur = $("#lemb").val();
-                                let gajlem = $("#gaji_lembur").text();
-                                let number3 = $("#tun").val();
-                                let potpph = $("#potpph").text();
-                                let potasskec = $("#potasskec").text();
-                                let potasskem = $("#potasskem").text();
-                                let pottht = $("#pottht").text();
-                                let potpen = $("#potpen").text();
-                                let potorgan = $("#potorgan").text();
-
-                                let lemb = number2 * gajlem;
-                                // $("#lemb").html(addCommas(lemb));
-                                $("#lemb").val(lemb);
-
-                                let pph = (number1 * potpph) / 100;
-                                // $("#pph").html(addCommas(pph));
-                                $("#pph").val(pph);
-
-                                let ass_kec = (number1 * potasskec) / 100;
-                                // $("#ass_kec").html(addCommas(ass_kec));
-                                $("#ass_kec").val(ass_kec);
-
-                                let ass_kem = (number1 * potasskem) / 100;
-                                // $("#ass_kem").html(addCommas(ass_kem));
-                                $("#ass_kem").val(ass_kem);
-
-                                let iuran_tht = (number1 * pottht) / 100;
-                                // $("#iuran_tht").html(addCommas(iuran_tht));
-                                $("#iuran_tht").val(iuran_tht);
-
-                                let iuran_pensiun = (number1 * potpen) / 100;
-                                // $("#iuran_pensiun").html(addCommas(iuran_pensiun));
-                                $("#iuran_pensiun").val(iuran_pensiun);
-
-                                let iuran_organisasi = (number1 * potorgan) / 100;
-                                // $("#iuran_organisasi").html(addCommas(iuran_organisasi));
-                                $("#iuran_organisasi").val(iuran_organisasi);
-                                // var number1 = parseInt($("#gaji_pokok").text());
-                                // var bur = parseInt($("#lemb").text());
-                                // var number3 = parseInt($("#tun").text());
-
-                                let potter = $("#terlambatt").text();
-                                let potizi = $("#izinn").text();
-                                let potcut = $("#cutii").text();
-                                let potalp = $("#alphaa").text();
-
-
-
-                                // var input1 = parseInt($("#input1").val());
-                                // var input2 = parseInt($("#input2").val());
-
-
-
-                                let ter = $("#terlambat").text();
-                                let cut = $("#cuti").text();
-                                let izi = $("#izin").text();
-                                let alp = $("#alpha").text();
-                                let limit = 15;
-                                let limitijin = 3;
-
-                                let tlm = ter * potter;
-                                // $("#tmb").html(addCommas(tlm));
-                                $("#tmb").val(tlm);
-
-                                if (izi > limitijin) {
-                                    let per2 = izi - limitijin;
-                                    let izin = per2 * potizi;
-                                    // $("#izn").html(addCommas(izin));
-                                    $("#izn").val(izin);
-                                } else {
-                                    let izin = 0;
-                                    $("#izn").val(izin);
-                                }
-
-                                if (cut > limit) {
-                                    let per1 = cut - limit;
-                                    let cuti = per1 * potcut;
-                                    $("#cut").val(cuti);
-                                } else {
-                                    let cuti = 0;
-                                    $("#cut").val(cuti);
-                                }
-
-                                let alpha = alp * potalp;
-                                $("#alp").val(alpha);
-                                // $('.subtot').each(function() {
-                                //     total += parseFloat($(this).text());
-                                // });
-                                // let pph = (parseFloat(number1) * potpph) / 100;
-                                // $("#pph").html(addCommas(pph));
-                                // $("#pph").val(pph);
-                                // $('#subTotal').text(total);
-
-                                // let result = parseFloat(number1) + parseFloat(bur) + parseFloat(
-                                //     number3);
-                                // // let sub = result;
-                                // // $("#subTotal").html(addCommas(result));
-
-                                // $("#subTotal").html(result);
-
-                                // if (number1 > 0) {
-                                //     let result = parseFloat(number1) + parseFloat(bur) + parseFloat(
-                                //         number3);
-                                //     // let sub = result;
-                                //     // $("#subTotal").html(addCommas(result));
-
-                                //     $("#subTotal").html(result);
-                                // } else {
-                                //     let result = parseFloat(number1) + parseFloat(bur) + parseFloat(
-                                //         number3);
-                                //     // let sub = result;
-                                //     // $("#subTotal").html(addCommas(result));
-                                //     $("#subTotal").html(result);
-                                // }
-                                // if (number1 > 3000000) {
-                                //     let lemb = number2 * 50000;
-                                //     // $("#lemb").html(addCommas(lemb));
-                                //     $("#lemb").val(lemb);
-                                // } else {
-                                //     let lemb = number2 * 25000;
-                                //     // $("#lemb").html(addCommas(lemb));
-                                //     $("#lemb").val(lemb);
-                                // }
-
-                                // if (number1 > 3000000) {
-                                //     let number3 = 500000;
-                                //     // $("#tun").html(addCommas(number3));
-                                //     $("#tun").val(number3);
-                                // } else {
-                                //     let number3 = 250000;
-                                //     // $("#tun").html(addCommas(number3));
-                                //     $("#tun").val(number3);
-                                // }
-
-                                // if (number1 > 3000000) {
-                                //     let pph = (parseFloat(number1) * 5) / 100;
-                                //     // $("#pph").html(addCommas(pph));
-                                //     $("#pph").val(pph);
-                                // } else {
-                                //     let pph = (parseFloat(number1) * 2) / 100;
-                                //     // $("#pph").html(addCommas(pph));
-                                //     $("#pph").val(pph);
-                                // }
-
-                                // if (number1 > 3000000) {
-                                // let ass_kec = (parseFloat(number1) * 3) / 100;
-                                // // $("#ass_kec").html(addCommas(ass_kec));
-                                // $("#ass_kec").val(ass_kec);
-                                // } else {
-                                //     let ass_kec = (parseFloat(number1) * 1) / 100;
-                                //     // $("#ass_kec").html(addCommas(ass_kec));
-                                //     $("#ass_kec").val(ass_kec);
-                                // }
-
-                                // if (number1 > 3000000) {
-                                //     let ass_kem = (parseFloat(number1) * 3) / 100;
-                                //     // $("#ass_kem").html(addCommas(ass_kem));
-                                //     $("#ass_kem").val(ass_kem);
-                                // } else {
-                                // let ass_kem = (parseFloat(number1) * 1) / 100;
-                                // // $("#ass_kem").html(addCommas(ass_kem));
-                                // $("#ass_kem").val(ass_kem);
-                                // }
-
-                                // if (number1 > 3000000) {
-                                //     let iuran_tht = (parseFloat(number1) * 5) / 100;
-                                //     // $("#iuran_tht").html(addCommas(iuran_tht));
-                                //     $("#iuran_tht").val(iuran_tht);
-                                // } else {
-                                // let iuran_tht = (parseFloat(number1) * 2) / 100;
-                                // // $("#iuran_tht").html(addCommas(iuran_tht));
-                                // $("#iuran_tht").val(iuran_tht);
-                                // }
-
-                                // if (number1 > 3000000) {
-                                //     let iuran_pensiun = (parseFloat(number1) * 5) / 100;
-                                //     // $("#iuran_pensiun").html(addCommas(iuran_pensiun));
-                                //     $("#iuran_pensiun").val(iuran_pensiun);
-                                // } else {
-                                // let iuran_pensiun = (parseFloat(number1) * 2) / 100;
-                                // // $("#iuran_pensiun").html(addCommas(iuran_pensiun));
-                                // $("#iuran_pensiun").val(iuran_pensiun);
-                                // }
-
-                                // if (number1 > 3000000) {
-                                //     let iuran_organisasi = (parseFloat(number1) * 5) / 100;
-                                //     // $("#iuran_organisasi").html(addCommas(iuran_organisasi));
-                                //     $("#iuran_organisasi").val(iuran_organisasi);
-                                // } else {
-                                // let iuran_organisasi = (parseFloat(number1) * 2) / 100;
-                                // // $("#iuran_organisasi").html(addCommas(iuran_organisasi));
-                                // $("#iuran_organisasi").val(iuran_organisasi);
-                                // }
-
-                                // if (ter > 0) {
-                                //     // let denda = parseFloat(number1) * 10000;
-                                //     let tlm = ter * 10000;
-                                //     // let total = denda;
-                                //     // $("#tmb").html(addCommas(tlm));
-                                //     $("#tmb").val(tlm);
-                                //     // $("#denda").val(number1 * 10000);
-                                // } else {
-                                //     let tlm = 0;
-                                //     // $("#tmb").html(addCommas(tlm));
-                                //     $("#tmb").val(tlm);
-                                // }
-
-                                // if (izi > limitijin) {
-                                // let per2 = izi - limitijin;
-                                // let izin = per2 * 70000;
-                                // // $("#izn").html(addCommas(izin));
-                                // $("#izn").val(izin);
-                                // } else {
-                                //     let izin = 0;
-                                //     // $("#izn").html(addCommas(izin));
-                                //     $("#izn").val(izin);
-                                // }
-
-                                // if (cut > limit) {
-                                // let per1 = cut - limit;
-                                // let cuti = per1 * 70000;
-                                // $("#cut").val(cuti);
-                                //     //     // $("#denda").val(cuti + denda);
-                                // } else {
-                                //     let cuti = 0;
-                                //     // $("#cut").html(addCommas(cuti));
-                                //     $("#cut").val(cuti);
-                                // }
-
-                                // if (alp > 0) {
-                                // let alpha = alp * 70000;
-                                // $("#alp").val(alpha);
-                                // } else {
-                                //     let alpha = alp * 70000;
-                                //     $("#alp").val(alpha);
-                                // }
-
-                                var gajpok = document.getElementById('gaji_pokok').value;
-                                var lembur = document.getElementById('lemb').value;
-                                var tunjangan = document.getElementById('tun').value;
-
-                                var totwal = parseInt(lembur) + parseInt(tunjangan);
-                                $("#totwal").val(totwal);
-                                var subtot = parseInt(gajpok) + parseInt(lembur) + parseInt(
-                                    tunjangan);
-                                $("#subTotal").val(subtot);
-
-                                // $("#lain").keyup(function() {
-                                // let number1 = $("#gaji_pokok").val();
-                                // let number2 = $("#lembur").text();
-                                // let bur = $("#lemb").val();
-                                // let number3 = $("#tun").val();
-                                var terlambat = $("#tmb").val();
-                                var izinn = $("#izn").val();
-                                // var cuti = $("#cut").val();
-                                var lai = $("#lain").val();
-                                var pot_pph = $("#pph").val();
-                                var pot_ass_kec = $("#ass_kec").val();
-                                var pot_ass_kem = $("#ass_kem").val();
-                                var pot_tht = $("#iuran_tht").val();
-                                var pot_pensi = $("#iuran_pensiun").val();
-                                var pot_organ = $("#iuran_organisasi").val();
-
-                                // var terlambat = document.getElementById('tmb').value;
-                                // var izinn = document.getElementById('izn').value;
-                                // var cuti = document.getElementById('cut').value;
-                                // var lai = document.getElementById('lain').value;
-                                // var pot_pph = document.getElementById('pph').value;
-                                // var pot_ass_kec = document.getElementById('ass_kec').value;
-                                // var pot_ass_kem = document.getElementById('ass_kem').value;
-                                // var pot_tht = document.getElementById('iuran_tht').value;
-                                // var pot_pensi = document.getElementById('iuran_pensiun').value;
-                                // var pot_organ = document.getElementById('iuran_organisasi').value;
-
-                                // var totpot = parseInt(pot_pph) + parseInt(pot_ass_kec) + parseInt(
-                                //         pot_ass_kem) + parseInt(pot_tht) + parseInt(pot_pensi) +
-                                //     parseInt(pot_organ) + parseInt(terlambat) + parseInt(cuti) +
-                                //     parseInt(izinn) + parseInt(lai);
-                                var totpot = parseInt(pot_pph) + parseInt(pot_ass_kec) +
-                                    parseInt(
-                                        pot_ass_kem) + parseInt(pot_tht) + parseInt(
-                                        pot_pensi) +
-                                    parseInt(pot_organ) + parseInt(terlambat) + parseInt(
-                                        cuti) +
-                                    parseInt(izinn);
-                                // $("#tot_pot").html(addCommas(totpot));
-                                $("#tot_pot").val(totpot);
-                                $("#pot").val(totpot);
-
-                                var sub = $("#subTotal").val();
-                                var subpot = $("#pot").val();
-                                var gtot = sub - subpot;
-                                $("#gtot").val(gtot);
-
-                                $("#lain").keyup(function() {
-                                    var terlambat = $("#tmb").val();
-                                    var izinn = $("#izn").val();
-                                    var cuti = $("#cut").val();
-                                    var lai = $("#lain").val();
-                                    var pot_pph = $("#pph").val();
-                                    var pot_ass_kec = $("#ass_kec").val();
-                                    var pot_ass_kem = $("#ass_kem").val();
-                                    var pot_tht = $("#iuran_tht").val();
-                                    var pot_pensi = $("#iuran_pensiun").val();
-                                    var pot_organ = $("#iuran_organisasi").val();
-                                    if (lai > 0) {
-                                        var totpot = parseInt(pot_pph) + parseInt(
-                                                pot_ass_kec) +
-                                            parseInt(
-                                                pot_ass_kem) + parseInt(pot_tht) +
-                                            parseInt(
-                                                pot_pensi) +
-                                            parseInt(pot_organ) + parseInt(
-                                                terlambat) +
-                                            parseInt(
-                                                cuti) +
-                                            parseInt(izinn) + parseInt(lai);
-                                        // var totpot = pot_pph + pot_ass_kec + pot_ass_kem + pot_tht + pot_pensi + pot_organ + terlambat + cuti + izinn + lai;
-                                        $("#tot_pot").val(totpot);
-                                        $("#pot").val(totpot);
-
-                                        var sub = $("#subTotal").val();
-                                        var subpot = $("#pot").val();
-                                        var gtot = sub - subpot;
-                                        $("#gtot").val(gtot);
-                                    } else {
-                                        let lai = 0;
-                                        var totpot = parseInt(pot_pph) + parseInt(
-                                                pot_ass_kec) +
-                                            parseInt(
-                                                pot_ass_kem) + parseInt(pot_tht) +
-                                            parseInt(
-                                                pot_pensi) +
-                                            parseInt(pot_organ) + parseInt(
-                                                terlambat) +
-                                            parseInt(
-                                                cuti) +
-                                            parseInt(izinn) + parseInt(lai);
-                                        // var totpot = pot_pph + pot_ass_kec + pot_ass_kem + pot_tht + pot_pensi + pot_organ + terlambat + cuti + izinn + lai;
-                                        $("#tot_pot").val(totpot);
-                                        $("#pot").val(totpot);
-
-                                        var sub = $("#subTotal").val();
-                                        var subpot = $("#pot").val();
-                                        var gtot = sub - subpot;
-                                        $("#gtot").val(gtot);
-                                    }
-                                });
-                            };
                         });
                     }
                 });

@@ -50,7 +50,6 @@
                                         <th>Ijin</th>
                                         <th>Cuti</th>
                                         <th>Alpha</th>
-                                        <th>Biaya Lain</th>
                                         <th style="width: 10%">Action</th>
                                     </tr>
                                 </thead>
@@ -66,7 +65,6 @@
                                             <td>{{ $abs->izin }}</td>
                                             <td>{{ $abs->cuti }}</td>
                                             <td>{{ $abs->alpha }}</td>
-                                            <td>{{ $abs->lain }}</td>
                                             {{-- <td>{{ $abs->denda }}</td>
                                             <td>{{ $abs->gajiLembur }}</td> --}}
                                             <td>
@@ -87,21 +85,6 @@
                                         </tr>
                                     @endforeach
                                 </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <th>NO</th>
-                                        <th>Nama</th>
-                                        <th>Bulan</th>
-                                        <th>Terlambat</th>
-                                        <th>Lembur</th>
-                                        <th>Sakit</th>
-                                        <th>Ijin</th>
-                                        <th>Cuti</th>
-                                        <th>Alpha</th>
-                                        <th>Biaya Lain</th>
-                                        <th style="width: 10%">Action</th>
-                                    </tr>
-                                </tfoot>
                             </table>
                         </div>
                     </div>
@@ -129,19 +112,21 @@
                         <div class="modal-body">
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Nama</label>
+                                    <label for="exampleInputEmail1">ID</label>
                                     <input type="text" class="form-control" id="karyawan_id" name="karyawan_id"
                                         list="id_kary" placeholder="Masukkan Nama Karyawan"
-                                        wire:model.defer="data.karyawan_id" required>
+                                        wire:model.defer="data.karyawan_id" autocomplete="off" required>
                                     {{-- <select id="karyawan_id" name="karyawan_id" wire:model.defer="data.karyawan_id" required> --}}
                                         <datalist id="id_kary">
-                                            {{-- <option value=""> - Pilih Karyawan - </option> --}}
+                                            <option value=""> - Pilih Karyawan - </option>
                                         @foreach ($karyawan as $kry)
                                             <option value="{{ $kry->id }}"> {{ $kry->nm_karyawan }} </option>
                                         @endforeach
                                         </datalist>
                                     {{-- </select> --}}
                                     <br>
+                                    <label for="">Nama</label>
+                                    <input type="text" id="nama" class="form-control">
                                     {{-- <input type="number" class="form-control"
                                     id="nama" name="nama"> --}}
                                     {{-- <p id="nama" name="nama" style="color: white"></p> --}}
@@ -149,44 +134,39 @@
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Bulan</label>
                                     <input type="date" class="form-control" wire:model.defer="data.bulan"
-                                        id="bulan" name="bulan" placeholder="Masukkan Bulan"
+                                        id="bulan" autocomplete="off" name="bulan" placeholder="Masukkan Bulan"
                                         required>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Terlambat</label>
                                     <input type="text" class="form-control" wire:model.defer="data.terlambat"
-                                        id="terlambat" name="terlambat" placeholder="Masukkan Jumlah Terlambat"
+                                        id="terlambat" autocomplete="off" name="terlambat" placeholder="Masukkan Jumlah Terlambat"
                                         required>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Lembur /Jam</label>
                                     <input type="text" class="form-control" wire:model.defer="data.lembur"
-                                        id="lembur" name="lembur" placeholder="Masukkan Jumlah Lembur" required>
+                                        id="lembur" autocomplete="off" name="lembur" placeholder="Masukkan Jumlah Lembur" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Sakit</label>
                                     <input type="text" class="form-control" wire:model.defer="data.sakit"
-                                        id="sakit" name="sakit" placeholder="Masukkan Jumlah Sakit" required>
+                                        id="sakit" autocomplete="off" name="sakit" placeholder="Masukkan Jumlah Sakit" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Izin</label>
                                     <input type="text" class="form-control" wire:model.defer="data.izin"
-                                        id="izin" name="izin" placeholder="Masukkan Jumlah Izin" required>
+                                        id="izin" name="izin" autocomplete="off" placeholder="Masukkan Jumlah Izin" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Cuti</label>
                                     <input type="text" class="form-control" wire:model.defer="data.cuti"
-                                        id="cuti" name="cuti" placeholder="Masukkan Jumlah Cuti" required>
+                                        id="cuti" autocomplete="off" name="cuti" placeholder="Masukkan Jumlah Cuti" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Alpha</label>
-                                    <input type="text" class="form-control" wire:model.defer="data.alpha"
+                                    <input type="text" autocomplete="off" class="form-control" wire:model.defer="data.alpha"
                                         id="alpha" name="alpha" placeholder="Masukkan Jumlah Alpha" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Biaya Lain - Lain</label>
-                                    <input type="text" class="form-control" wire:model.defer="data.lain"
-                                        id="lain" name="lain" placeholder="Masukkan Jumlah Biaya" required>
                                 </div>
                             </div>
                         </div>
@@ -308,7 +288,7 @@
                         if (response) {
                             console.log(response.karyawan);
                             $('#karyawan_id').val(response.karyawan[0]['id']);
-                            $('#nama').text(response.karyawan[0]['nm_karyawan']);
+                            $('#nama').val(response.karyawan[0]['nm_karyawan']);
                         } else {
                             console.log('error');
                         }

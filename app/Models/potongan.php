@@ -2,12 +2,10 @@
 
 namespace App\Models;
 
-use App\Models\karyawan;
-use App\Models\absensi;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class detail extends Model
+class potongan extends Model
 {
     use HasFactory;
 
@@ -15,11 +13,11 @@ class detail extends Model
 
     public function karyawan()
     {
-        return $this->belongsTo(karyawan::class);
+        return $this->hasMany(karyawan::class);
     }
 
-    public function absensi()
+    public function gaji()
     {
-        return $this->belongsTo(absensi::class);
+        return $this->belongsTo(gaji::class);
     }
 }

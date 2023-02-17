@@ -66,8 +66,10 @@
                                         <td>{{ $kry->alamat }}</td>
                                         <td>{{ $kry->kewarganegaraan }}</td>
                                         <td>{{ $kry->foto }}</td>
+                                        @foreach ($potongan as $kry)
                                         <td>{{ $kry->gaji->jabatan }}</td>
                                         <td>{{ $kry->gaji->gaji_pokok }}</td>
+                                        @endforeach
                                         <td>
                                             <div class="form-button-action">
                                                 <button type="button" data-toggle="tooltip" title=""
@@ -86,22 +88,7 @@
                                     </tr>
                                 @endforeach
                             </tbody>
-                            <tfoot>
-                                <tr>
-                                    <th>Nama Karyawan</th>
-                                    <th>Jenis Kelamin</th>
-                                    <th>Agama</th>
-                                    <th>TTL</th>
-                                    <th>No Telepon</th>
-                                    <th>Status</th>
-                                    <th>Alamat</th>
-                                    <th>Kewarganegaraan</th>
-                                    <th>Foto</th>
-                                    <th>Jabatan</th>
-                                    <th>Gaji</th>
-                                    <th>Action</th>
-                                </tr>
-                            </tfoot>
+
                         </table>
                     </div>
                 </div>
@@ -136,7 +123,7 @@
                                 <div class="form-group form-group-default">
                                     <label>Nama Karyawan</label>
                                     <input id="nm_karyawan" type="text" class="form-control" name="nm_karyawan"
-                                        placeholder="Masukkan Nama" wire:model.defer="data.nm_karyawan">
+                                    autocomplete="off" placeholder="Masukkan Nama" wire:model.defer="data.nm_karyawan">
                                 </div>
                             </div>
                             <div class="col-sm-12">
@@ -157,7 +144,7 @@
                                 <div class="form-group form-group-default">
                                     <label>Agama</label>
                                     <select name="agama" id="agama" wire:model.defer="data.agama"
-                                        style="background-color: #202940; color: white">
+                                        style="border-color: white; background-color: #202940; height: 50px; text-align: center; color: white;" class="form-control">
                                         <option value=""> - Pilih Agama - </option>
                                         <option value="Islam">Islam</option>
                                         <option value="Kristen">Kristen</option>
@@ -179,7 +166,7 @@
                                 <div class="form-group form-group-default">
                                     <label>Nomer Telepon</label>
                                     <input id="no_telpon" name="no_telpon" type="text" class="form-control"
-                                        placeholder="Masukkan Nomer Telepon" wire:model.defer="data.no_telpon">
+                                    autocomplete="off" placeholder="Masukkan Nomer Telepon" wire:model.defer="data.no_telpon">
                                 </div>
                             </div>
                             <div class="col-sm-12">
@@ -199,7 +186,7 @@
                                 <div class="form-group form-group-default">
                                     <label>Alamat</label>
                                     <input id="alamat" type="text" name="alamat" class="form-control"
-                                        placeholder="Masukkan Alamat" wire:model.defer="data.alamat">
+                                    autocomplete="off" placeholder="Masukkan Alamat" wire:model.defer="data.alamat">
                                 </div>
                             </div>
                             <div class="col-sm-12">
@@ -207,18 +194,18 @@
                                     <label>Kewarganegaraan</label>
                                     <input id="kewarganegaraan" name="kewarganegaraan" type="text"
                                         class="form-control" placeholder="Masukkan Kewarganegaraan"
-                                        wire:model.defer="data.kewarganegaraan">
+                                        wire:model.defer="data.kewarganegaraan" autocomplete="off">
                                 </div>
                             </div>
                             <div class="col-sm-12">
                                 <div class="form-group form-group-default">
                                     <label>Gaji</label>
-                                    <select name="gaji_id" id="gaji_id" wire:model.defer="data.gaji_id"
-                                        style="background-color: #202940; color: white">
+                                    <select name="pot_id" id="pot_id" class="form-control" wire:model.defer="data.pot_id"
+                                        style="border-color: white; background-color: #202940; height: 50px; text-align: center; color: white; border: 1px;">
                                         <option value="0"> - Pilih Gaji - </option>
-                                        @foreach ($gaji as $gj)
-                                            <option value="{{ $gj->id }}">{{ $gj->jabatan }} |
-                                                {{ $gj->gaji_pokok }}</option>
+                                        @foreach ($potongan as $pot)
+                                            <option value="{{ $pot->potongan_id }}">{{ $pot->gaji->jabatan }} |
+                                                {{ $pot->gaji->gaji_pokok }}</option>
                                         @endforeach
                                     </select>
                                 </div>

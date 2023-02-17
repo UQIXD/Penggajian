@@ -38,3 +38,4 @@ class Login extends Component
     //     return view('dashboard.dash');
     // }
 }
+

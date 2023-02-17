@@ -11,9 +11,9 @@ class gaji extends Model
 
     protected $guarded = ['id'];
 
-    public function karyawan()
+    public function potongan()
     {
-        return $this->hasMany(karyawan::class);
+        return $this->hasMany(potongan::class);
 
     }
 }

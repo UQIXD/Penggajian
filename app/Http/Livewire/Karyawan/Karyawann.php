@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Karyawan;
 use App\Models\absensi;
 use App\Models\gaji;
 use App\Models\karyawan;
+use App\Models\potongan;
 use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
 
@@ -19,10 +20,12 @@ class Karyawann extends Component
         $gaji = gaji::all();
         $karyawan = karyawan::all();
         $absensi = absensi::all();
+        $potongan = potongan::all();
         return view('livewire.karyawan.karyawan', [
             'karyawan' => $karyawan,
             'gaji' => $gaji,
             'absensi' => $absensi,
+            'potongan' => $potongan,
         ]);
     }
 
@@ -44,7 +47,7 @@ class Karyawann extends Component
             'alamat' => 'required',
             'kewarganegaraan' => 'required',
             // 'foto' => 'required',
-            'gaji_id' => 'required',
+            'pot_id' => 'required',
         ])->validate();
         karyawan::create($validasi);
         $this->dispatchBrowserEvent('hide-tambah-kry',['message' => 'Data Karyawan Berhasil disimpan']);
@@ -70,7 +73,7 @@ class Karyawann extends Component
             'alamat' => 'required',
             'kewarganegaraan' => 'required',
             // 'foto' => 'required',
-            'gaji_id' => 'required',
+            'pot_id' => 'required',
         ])->validate();
 
         $karyawan = karyawan::findOrfail($this->kry_id);

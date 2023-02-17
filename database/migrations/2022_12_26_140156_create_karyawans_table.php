@@ -24,8 +24,8 @@ class CreateKaryawansTable extends Migration
             $table->string('alamat');
             $table->string('kewarganegaraan');
             $table->string('foto')->default(0);
-            $table->foreignId('gaji_id');
-            $table->foreignId('absensi_id');
+            $table->foreignId('pot_id');
+            // $table->foreignId('absensi_id')->default(0);
             $table->timestamps();
         });
     }

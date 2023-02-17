@@ -17,15 +17,8 @@ class CreateGajisTable extends Migration
             $table->id();
             $table->string('jabatan');
             $table->bigInteger('gaji_pokok');
-            // $table->integer('bulan');
-            // $table->integer('tahun');
-            // $table->integer('masa_kerja');
-            // $table->foreignId('departemen_id');
-            // $table->foreignId('jabatan_id');
-            // $table->integer('tj_jabatan');
-            // $table->integer('tj_anak');
-            // $table->integer('tj_istri');
-            // $table->integer('total');
+            $table->bigInteger('gaji_lembur');
+            $table->bigInteger('tunjangan');
             $table->timestamps();
         });
     }

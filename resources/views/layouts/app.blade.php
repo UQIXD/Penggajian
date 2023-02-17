@@ -147,6 +147,9 @@
         window.addEventListener('tampil-Gaji', event => {
             $('#modal-tambah').modal('show');
         });
+        window.addEventListener('tampil-Pot', event => {
+            $('#modal-tambah').modal('show');
+        });
         window.addEventListener('pesan-kry', event => {
             toastr.warning(event.detail.message, "Peringatan!");
         });
@@ -154,6 +157,9 @@
             toastr.warning(event.detail.message, "Peringatan!");
         });
         window.addEventListener('pesan-gaji', event => {
+            toastr.warning(event.detail.message, "Peringatan!");
+        });
+        window.addEventListener('pesan-pot', event => {
             toastr.warning(event.detail.message, "Peringatan!");
         });
         window.addEventListener('hide-tambah-kry', event => {
@@ -165,6 +171,10 @@
             toastr.success(event.detail.message, "Sukses!");
         });
         window.addEventListener('hide-tambah-gaji', event => {
+            $('#modal-tambah').modal('hide');
+            toastr.success(event.detail.message, "Sukses!");
+        });
+        window.addEventListener('hide-tambah-pot', event => {
             $('#modal-tambah').modal('hide');
             toastr.success(event.detail.message, "Sukses!");
         });
@@ -181,6 +191,9 @@
         window.addEventListener('tampil-rubah-kry', event => {
             $('#modal-tambah').modal('show');
         });
+        window.addEventListener('tampil-rubah-pot', event => {
+            $('#modal-tambah').modal('show');
+        });
         window.addEventListener('tampil-hapus-kry', event => {
             $('#modal-hapus').modal('show');
         });
@@ -188,6 +201,9 @@
             $('#modal-hapus').modal('show');
         });
         window.addEventListener('tampil-hapus-gaji', event => {
+            $('#modal-hapus').modal('show');
+        });
+        window.addEventListener('tampil-hapus-pot', event => {
             $('#modal-hapus').modal('show');
         });
         window.addEventListener('hide-hapus-kry', event => {
@@ -199,6 +215,10 @@
             toastr.error(event.detail.message, "Sukses!");
         });
         window.addEventListener('hide-hapus-gaji', event => {
+            $('#modal-hapus').modal('hide');
+            toastr.error(event.detail.message, "Sukses!");
+        });
+        window.addEventListener('hide-hapus-pot', event => {
             $('#modal-hapus').modal('hide');
             toastr.error(event.detail.message, "Sukses!");
         });

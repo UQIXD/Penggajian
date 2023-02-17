@@ -1,0 +1,69 @@
+*, html {
+    font-family: 'Poppins', sans-serif;
+    overflow: hidden;
+}
+
+.login {
+    height:100vh;
+}
+
+header h1 {
+    font-style: normal;
+    font-weight: 800;
+    font-size: 28px;
+    line-height: 48px;
+    color: black;
+}
+
+header p {
+    margin-bottom: 22px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 21px;
+    color: black;
+}
+
+.login-form label {
+    margin-top: 20px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color:black;
+}
+
+.login-form input {
+     background: white;
+     border: 1px solid black;
+     box-sizing: border-box;
+     border-radius: 8px;
+}
+
+.login-form .loginbro
+{
+margin-top: 10px;
+   background: black;
+   color: white;
+   font-weight: 600;
+    border-radius: 8px;
+    width: 100% ;
+    height: 42px;
+
+}
+
+.login-form .register
+{
+    margin-top: 30px;
+    
+   
+    
+
+}
+
+.login-form > .akun
+{
+    margin-top: 50px;
+}
+
+

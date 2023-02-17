@@ -15,24 +15,26 @@ class CreateDetailsTable extends Migration
     {
         Schema::create('details', function (Blueprint $table) {
             $table->id();
+            // $table->foreignId('absensi_id');
             $table->foreignId('karyawan_id');
             $table->string('jabatan');
             $table->bigInteger('gaji_pokok');
             $table->bigInteger('lembur');
             $table->bigInteger('tunjangan');
             $table->bigInteger('pph');
-            $table->bigInteger('bpjs');
+            // $table->bigInteger('bpjs');
             $table->bigInteger('ass_kec');
             $table->bigInteger('ass_kem');
+            $table->bigInteger('iuran_tht');
             $table->bigInteger('iuran_pensiun');
             $table->bigInteger('iuran_organisasi');
             $table->bigInteger('terlambat');
             $table->bigInteger('izin');
             $table->bigInteger('cuti');
             $table->bigInteger('alpha');
-            $table->bigInteger('sakit');
-            $table->string('biaya')->default('-');
-            $table->bigInteger('jum_bi')->default(0);
+            $table->bigInteger('sakit')->default(0);
+            $table->string('biaya')->nullable()->default("");
+            $table->bigInteger('jum_bi')->nullable()->default(0);
             $table->bigInteger('tot_pot');
             $table->bigInteger('subtot');
             $table->bigInteger('gtot');
